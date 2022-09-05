@@ -19,7 +19,7 @@
 
 | Student Name | Student Email | GitHub Username | Stundet's role |
 |    :---:     |     :---:     |     :---:       |     :---:       |
-| Leiyi Gao    | lgao4mail.sfsu.edu             |   gaolarry1987             |  Team Leader |
+| Leiyi Gao    | lgao4@mail.sfsu.edu             |   gaolarry1987             |  Team Leader |
 | Justin Mao   | jmao@mail.sfsu.edu             |   jmao12                   |  Backend Leader |
 | Yinyin Wu    | ywu21@mail.sfsu.edu            |   kristyahhwu              |  Scrum Master |
 | Michael Han    | mhan2@mail.sfsu.edu           |   michaelhan38              |  Git Master |
