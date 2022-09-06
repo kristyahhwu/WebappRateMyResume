@@ -34,7 +34,7 @@ Run the following command to install docker:
 
 ### Running mongodb locally  
 NOTE: You need to create an account in [docker hub](https://hub.docker.com/) to pull container images from the registry. Refer To [this article](https://docs.docker.com/engine/reference/commandline/login/) if you run into credential issues.  
-From `applications` directory, run the following command:  
- `docker compose up`  
+From `/applications` directory, run the following command:  
+`docker compose up`  
 You can interact with the database using mongoExpress by entering this address in your browser URL:  
- `localhost:8081`
+`localhost:8081`
