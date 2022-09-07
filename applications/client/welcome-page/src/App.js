@@ -3,6 +3,8 @@ import React from 'react';
 import { Router, Switch, Route, Routes, Link } from "react-router-dom";
 import Teams from "./Teams";
 import Home from "./Home";
+import Michael from "./team/Michael";
+
 
 function App() {
   return (
@@ -14,14 +16,15 @@ function App() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/team">About</Link>
+            <Link to="/michael">Michael</Link>
           </li>
         </ul>
       </nav>
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/team" element={<Teams />} />
+        <Route path="/team" element={<Teams />} />\
+        <Route path="/michael" element={<Michael />} />
       </Routes>
     </>
   );
