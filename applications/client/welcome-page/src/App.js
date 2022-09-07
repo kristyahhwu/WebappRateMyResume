@@ -4,6 +4,7 @@ import { Router, Switch, Route, Routes, Link } from "react-router-dom";
 import Teams from "./Teams";
 import Home from "./Home";
 import Michael from "./team/Michael";
+import Nicholas from "./team/Nicholas";
 
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
           <li>
             <Link to="/michael">Michael</Link>
           </li>
+          <li>
+            <Link to="/nicholas">Nicholas</Link>
+          </li>
         </ul>
       </nav>
 
@@ -25,6 +29,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/team" element={<Teams />} />\
         <Route path="/michael" element={<Michael />} />
+        <Route path="/nicholas" element={<Nicholas />} /> 
       </Routes>
     </>
   );
