@@ -5,6 +5,7 @@ import Teams from "./Teams";
 import Home from "./Home";
 import Michael from "./team/Michael";
 import Nicholas from "./team/Nicholas";
+import Leiyi from "./team/Leiyi";
 
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
             <Link to="/">Home</Link>
           </li>
           <li>
+            <Link to="/leiyi">Leiyi</Link>
+          </li>
+          <li>
             <Link to="/michael">Michael</Link>
           </li>
           <li>
@@ -27,7 +31,8 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/team" element={<Teams />} />\
+        <Route path="/team" element={<Teams />} />
+        <Route path="/leiyi" element={<Leiyi />} />
         <Route path="/michael" element={<Michael />} />
         <Route path="/nicholas" element={<Nicholas />} /> 
       </Routes>
