@@ -17,7 +17,7 @@
 3. Fill out the table below
 
 
-| Student Name | Student Email | GitHub Username | Stundet's role |
+| Student Name | Student Email | GitHub Username | Student's role |
 |    :---:     |     :---:     |     :---:       |     :---:       |
 | Leiyi Gao    | lgao4@mail.sfsu.edu             |   gaolarry1987             |  Team Leader |
 | Justin Mao   | jmao@mail.sfsu.edu             |   jmao12                   |  Backend Leader |
