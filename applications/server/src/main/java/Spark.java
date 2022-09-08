@@ -2,10 +2,7 @@ import static com.mongodb.client.model.Filters.*;
 import static spark.Spark.*;
 
 import com.google.gson.Gson;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.Mongo;
-import com.mongodb.MongoClient;
+import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
@@ -62,12 +59,12 @@ class Initializer{
 }
 
 public class Spark {
-
     public static void main(String[] args) {
         port(4321);
 
         // open connection
-        MongoClient mongoClient = new MongoClient("localhost", 27017);
+        MongoClientURI uri = new MongoClientURI("mongodb://admin:password@localhost:27017/");
+        MongoClient mongoClient = new MongoClient(uri);
         // get ref to database
         MongoDatabase db = mongoClient.getDatabase("UsersDatabase");
         // get ref to collection
