@@ -6,6 +6,7 @@ import Home from "./Home";
 import Michael from "./team/Michael";
 import Nicholas from "./team/Nicholas";
 import Leiyi from "./team/Leiyi";
+import Yinyin from "./team/Yinyin";
 
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
           <li>
             <Link to="/nicholas">Nicholas</Link>
           </li>
+          <li>
+            <Link to="/yinyin">Yinyin</Link>
+          </li>
         </ul>
       </nav>
 
@@ -34,7 +38,8 @@ function App() {
         <Route path="/team" element={<Teams />} />
         <Route path="/leiyi" element={<Leiyi />} />
         <Route path="/michael" element={<Michael />} />
-        <Route path="/nicholas" element={<Nicholas />} /> 
+        <Route path="/nicholas" element={<Nicholas />} />
+        <Route path="/yinyin" element={<Yinyin />} />
       </Routes>
     </>
   );
