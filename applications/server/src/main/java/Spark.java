@@ -39,6 +39,12 @@ class TeamMember{
     }
 }
 
+class MemberSearchByRoleRequest{
+    public String role;
+
+
+}
+
 class Initializer{
     ArrayList<TeamMember> teamMembers;
 
@@ -104,7 +110,25 @@ public class Spark {
             }
             return "team members initialized";
         });
+
+        //search each member endpoint
+        post("/eachMember", (req, res) -> {
+            String body = req.body();
+            MemberSearchByRoleRequest searchByRoleRequest = gson.fromJson(body, MemberSearchByRoleRequest.class);
+            System.out.println("body received"+ body);
+            Document search = teamMemberCollection.find(eq("role", searchByRoleRequest.role)).first();
+            if (search != null) {// find record where role is x
+                System.out.println("member found");
+
+                return gson.toJson(Document.parse(search.toJson()));
+
+            } else {
+                //can't find member
+                return "User not found";
+            }
+        });
     }
+
     public static byte[] LoadImage(String filePath) throws Exception {
         File file = new File(filePath);
         int size = (int)file.length();
@@ -116,3 +140,8 @@ public class Spark {
     }
 
 }
+//how to process request body
+//example:
+// get a team member by role
+//
+
