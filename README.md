@@ -1,4 +1,4 @@
-# CSC648-spring22-04-team04 Repository
+# CSC648-Fall22-04-team04 Repository
 
 ## Application URL: http://34.94.186.97:3000
 
