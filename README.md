@@ -29,8 +29,16 @@
 
 ## Developer Notes  
 ### Initial setup for VM instances in Google Cloud Platform  
-Run the following command to install docker:  
-`sudo apt-get install docker.io`  
+install docker: `sudo apt-get install docker.io`
+install npm: `sudo apt install npm`
+install nodejs: `sudo apt-get install nodejs`
+install maven: `sudo apt-get install maven`
+isntall java: `sudo apt install openjdk-17-jdk openjdk-17-jre`
+
+running frontend from directory where `package.json` file is in:
+`npm i`
+`npm run start&`
+
 
 ### Running mongodb locally  
 NOTE: You need to create an account in [docker hub](https://hub.docker.com/) to pull container images from the registry. Refer To [this article](https://docs.docker.com/engine/reference/commandline/login/) if you run into credential issues.  
