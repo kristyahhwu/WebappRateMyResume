@@ -1,0 +1,14 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_9_9_22,_2_47_PM_[Changes]" date="1662760051711" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_9_22,_2_47_PM_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 9/9/22, 2:47 PM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Initializer.class" />
+    <option name="AFTER_PATH" value="target/classes/Initializer.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_9_22,_2_47_PM_[Changes]/Initializer.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Spark.class" />
+    <option name="AFTER_PATH" value="target/classes/Spark.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_9_22,_2_47_PM_[Changes]/Spark.class" />
+  </binary>
+</changelist>
