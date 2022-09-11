@@ -1,6 +1,6 @@
-# CSC648-spring22-04-team04 Repository
+# CSC648-Fall22-04-team04 Repository
 
-## Application URL: 
+## Application URL: http://34.94.186.97:3000/
 
 
 ## Please do the following steps before completing Milestone 0.
