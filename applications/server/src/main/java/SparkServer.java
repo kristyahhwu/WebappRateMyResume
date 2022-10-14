@@ -79,6 +79,10 @@ public class SparkServer {
             return "Backend is running!";
         });
 
+        get("/", (req, res) -> {
+            return "Server is running";
+        });
+
         //get all the members and display them on the front end
         get("/loadMembers", (req, res) -> {
             List<Document> members = new ArrayList<>();
