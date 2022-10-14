@@ -75,6 +75,9 @@ public class SparkServer {
         MongoCollection<Document> teamMemberCollection = db.getCollection("teamMemberCollection");
 
         Gson gson = new Gson();
+        get("/", (req, res) -> {
+            return "Backend is running!";
+        });
 
         //get all the members and display them on the front end
         get("/loadMembers", (req, res) -> {
