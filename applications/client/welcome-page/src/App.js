@@ -18,7 +18,7 @@ function App() {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/leiyi">Leiyi</Link>
           </li>
           <li>
@@ -29,7 +29,7 @@ function App() {
           </li>
           <li>
             <Link to="/yinyin">Yinyin</Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
 
