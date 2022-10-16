@@ -51,7 +51,7 @@ const Home = () => {
         <button type="button" onClick = {handleSearch}>Search</button>
         <div> {data.title}</div>
 
-        {Object.values(data).map((d) => <li key={d.id}>{d.id} {d.title}</li>)}
+        {Object.values(data).map((d) => <p key={d.id}>{d.id} {d.title}</p>)}
 
         {/* <div className="Home">
                 {data.map((d) => <li key={d.id}>{d.id} {d.title}</li>)}
