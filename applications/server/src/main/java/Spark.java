@@ -75,8 +75,38 @@ public class Spark {
 
         Gson gson = new Gson();
 
+        // set CORS policy during preflight check
+        options("/*", (request, response) -> {
+
+            String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
+            if (accessControlRequestHeaders != null) {
+                response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
+            }
+
+            String accessControlRequestMethod = request.headers("Access-Control-Request-Method");
+            if (accessControlRequestMethod != null) {
+                response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
+            }
+            return "OK";
+        });
+        before((request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*");
+        });
+
+        get("/", (req, res) -> {
+            return "OK";
+        });
+
+        get("/post/search", (req, res) -> {
+            System.out.println("path: /post/search, keyword:" + req.queryParams("keyword"));
+            System.out.printf(gson.toJson("{Success!: success}"));
+            return gson.toJson("{'Success!': 'success'}");
+        });
+
         //get all the members and display them on the front end
         get("/loadMembers", (req, res) -> {
+            System.out.println("path: /loadMembers");
+
             List<Document> members = new ArrayList<>();
             List<Document> doc = teamMemberCollection.find().into(new ArrayList<>());
 
@@ -88,6 +118,8 @@ public class Spark {
 
         // insert group members for the first time
         get("/initMembers", (req, res) -> {
+            System.out.println("path: /initMembers");
+
             Initializer initializer = new Initializer();
             ArrayList<TeamMember> members = initializer.getTeamMembers();
             for (TeamMember member : members) {
