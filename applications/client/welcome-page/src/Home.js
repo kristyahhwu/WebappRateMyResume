@@ -1,31 +1,36 @@
 import React from "react";
 import './App.css';
-import JSONDATA from './MOCK_DATA.json';
 import { useEffect, useState } from 'react';
 import Axios from 'axios';
 
 const Home = () => {
     // http://34.94.186.97:3000/
   
-    const [searchTerm, setSearchTerm] = useState("");
     const [data, setData] = useState([]);
+    const [id, setId] = useState(1);
+    const [databuttonClick, setDataButtonClick] = useState("");
 
     useEffect(() => {
-      Axios.get('https://jsonplaceholder.typicode.com/posts')
+      Axios.get(`https://jsonplaceholder.typicode.com/posts/${[databuttonClick]}`)
         .then(res => {
           setData(res.data)
         }).catch(error => console.log(error))
-    }, [])
+    }, [databuttonClick])
 
     // TODO: 1 -handleSearch send GET request to /post/search with arg as the keyword.
-    const handleClick = (arg) => {
-      Axios.get('https://jsonplaceholder.typicode.com/posts', {
-        data: {
-          keyword: arg
-        }
-      })
+    // const handleSearch = () =>{
+    //   setDataButtonClick(id)
+    // }
 
-      setData([{"id":1,"user":"Farr","post":"this is my resume"}])
+    const handleSearch = () => {
+      // Axios.get(`https://jsonplaceholder.typicode.com/posts/${databuttonClick}`, {
+      //   data: {
+      //     id: arg
+      //   }
+    // })
+    setDataButtonClick(id)
+
+      // setData([{"id":1,"user":"Farr","post":"this is my resume"}])
     }
     
     console.log(data)
@@ -33,20 +38,26 @@ const Home = () => {
   
     return (
       < div className="App">
-        <div className="Home">
-                {data.map((d) => <li key={d.id}>{d.id} {d.title}</li>)}
-        </div>
-
-        <button onClick={handleClick}></button>
-  
         <h1>RateMyResume</h1>
 
         {/*TODO 2 - Modify this so it calls handleSearch. */}
         <input type="text"
           placeholder="Search..."
+          value = {id}
           onChange={event => {
-            setSearchTerm(event.target.value)
+            setId(event.target.value)
           }}/>
+
+        <button type="button" onClick = {handleSearch}>Search</button>
+        <div> {data.title}</div>
+
+
+        {/* <div className="Home">
+                {data.map((d) => <li key={d.id}>{d.id} {d.title}</li>)}
+        </div> */}
+
+        {/* <button onClick={handleClick}></button> */}
+
   
         {/* {data.filter((data) => {
           if (searchTerm === "") {

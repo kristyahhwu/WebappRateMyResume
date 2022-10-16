@@ -12,12 +12,12 @@ import Yinyin from "./team/Yinyin";
 function App() {
   return (
     <>
-      <h1>Welcome to Team04</h1>
+      {/* <h1>Welcome to Team04</h1> */}
       <nav>
         <ul>
-          <li>
+          {/* <li>
             <Link to="/">Home</Link>
-          </li>
+          </li> */}
           {/* <li>
             <Link to="/leiyi">Leiyi</Link>
           </li>
