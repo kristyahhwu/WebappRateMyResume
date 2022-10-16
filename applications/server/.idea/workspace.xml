@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27bc4eb5-b829-4d3c-8617-90b53fc2647f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_9_22,_2_47_PM_[Changes]/Initializer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_9_22,_2_47_PM_[Changes]/Spark.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_9_22,_2_47_PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_9_22__2_47_PM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SparkServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SparkServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Initializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Initializer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/MemberSearchByRoleRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MemberSearchByRoleRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SparkServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SparkServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/TeamMember.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/TeamMember.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +60,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.SparkServer">
     <configuration name="Spark" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Spark" />
       <module name="server" />
@@ -59,8 +68,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SparkServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SparkServer" />
+      <module name="server" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SparkServer" />
         <item itemvalue="Application.Spark" />
       </list>
     </recent_temporary>
