@@ -14,7 +14,6 @@ const Home = () => {
       Axios.get(`https://jsonplaceholder.typicode.com/posts/${[databuttonClick]}`)
         .then(res => {
           setData(res.data)
-          setId(res.data.id)
         }).catch(error => console.log(error))
     }, [databuttonClick])
 
