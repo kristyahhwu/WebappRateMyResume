@@ -7,7 +7,7 @@ const Home = () => {
     // http://34.94.186.97:3000/
   
     const [data, setData] = useState([]);
-    const [id, setId] = useState(1);
+    const [id, setId] = useState();
     const [databuttonClick, setDataButtonClick] = useState("");
 
     useEffect(() => {
