@@ -229,8 +229,9 @@ public class SparkServer {
             String searchKeyword = req.queryParams("keyword");
             System.out.println("path: /post/search, keyword:" + req.queryParams("keyword"));
 
-            PostSearchByIdRequest searchByIdRequest = gson.fromJson(searchKeyword, PostSearchByIdRequest.class);
-            Document search = postsCollection.find(eq("title", searchByIdRequest.id)).first();
+            // Modify to get partial match: https://www.mongodb.com/docs/realm/sdk/java/examples/mongodb-remote-access/
+            Document search = postsCollection.find(eq("title", searchKeyword)).first();
+            System.out.println("search results: " + search.toString());
             if (search != null) {// find record where role is x
                 System.out.println("post found");
 
