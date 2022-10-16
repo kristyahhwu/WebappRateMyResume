@@ -1,11 +1,13 @@
 import static com.mongodb.client.model.Filters.*;
-import static spark.Spark.port;
-import static spark.Spark.post;
-import static spark.Spark.get;
+import static spark.Spark.*;
+import static spark.Spark.before;
 
 
 import com.google.gson.Gson;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
@@ -14,8 +16,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSBuckets;
@@ -112,6 +113,17 @@ class PostDTO{
     String postAuthor;// id of the user that posted connected with Applicant userId
 }
 
+class postConstructorParams {
+    String postId;
+    String title;
+    String description;
+    LocalDate postDate;
+    String postAuthor;
+    ObjectId resume;
+    String comments;
+    int rating;
+}
+
 class Post{
     /*
     Entity 2: 	Post
@@ -124,6 +136,8 @@ can be used by other users
     comments, post rating
      */
     String postId;
+    String title;
+    String description;
     LocalDate postDate;
     String postAuthor;
     ObjectId resume;
@@ -134,13 +148,15 @@ can be used by other users
 
     }
 
-    public Post(String postId, LocalDate postDate, String postAuthor, ObjectId resume, String comments, int rating) {
-        this.postId = postId;
-        this.postDate = postDate;
-        this.postAuthor = postAuthor;
-        this.resume = resume;
-        this.comments = comments;
-        this.rating = rating;
+    public Post(postConstructorParams param) {
+        this.postId = param.postId;
+        this.title = param.title;
+        this.description = param.description;
+        this.postDate = param.postDate;
+        this.postAuthor = param.postAuthor;
+        this.resume = param.resume;
+        this.comments = param.comments;
+        this.rating = param.rating;
     }
 }
 
@@ -150,7 +166,8 @@ public class SparkServer {
         port(4321);
 
         // open connection
-        MongoClient mongoClient = new MongoClient("localhost", 27017);
+        MongoClientURI uri = new MongoClientURI("mongodb://admin:password@localhost:27017/");
+        MongoClient mongoClient = new MongoClient(uri);
         // get ref to database
         MongoDatabase db = mongoClient.getDatabase("UsersDatabase");
         // get ref to collection
@@ -168,54 +185,36 @@ public class SparkServer {
 
         Gson gson = new Gson();
 
-        //get all the members and display them on the front end
-        get("/loadMembers", (req, res) -> {
-            List<Document> members = new ArrayList<>();
-            List<Document> doc = teamMemberCollection.find().into(new ArrayList<>());
+        // set CORS policy during preflight check
+        options("/*", (request, response) -> {
 
-            for (Document d : doc) {
-                members.add(Document.parse(d.toJson()));
+            String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
+            if (accessControlRequestHeaders != null) {
+                response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
             }
-            return gson.toJson(members);
+
+            String accessControlRequestMethod = request.headers("Access-Control-Request-Method");
+            if (accessControlRequestMethod != null) {
+                response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
+            }
+            return "OK";
+        });
+        before((request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*");
         });
 
-        // insert group members for the first time
-        get("/initMembers", (req, res) -> {
-            Initializer initializer = new Initializer();
-            ArrayList<TeamMember> members = initializer.getTeamMembers();
-            for (TeamMember member : members) {
-                // create the GSON image
-                member.image =
-                        new Binary(BsonBinarySubType.BINARY, LoadImage(member.fileName));
-                // insert into transactions collection
-                Document doc = new Document("name", member.name)
-                        .append("role", member.role)
-                        .append("image", member.image)
-                        .append("email", member.email);
-                // insert document into collection
-                teamMemberCollection.insertOne(doc);
-            }
-            return "team members initialized";
+        get("/", (req, res) -> {
+            return "OK";
         });
 
-        //search each member endpoint
-        post("/eachMember", (req, res) -> {
-            String body = req.body();
-            MemberSearchByRoleRequest searchByRoleRequest = gson.fromJson(body, MemberSearchByRoleRequest.class);
-            System.out.println("body received"+ body);
-            Document search = teamMemberCollection.find(eq("role", searchByRoleRequest.role)).first();
-            if (search != null) {// find record where role is x
-                System.out.println("member found");
+//        get("/post/search", (req, res) -> {
+//            System.out.println("path: /post/search, keyword:" + req.queryParams("keyword"));
+//            System.out.printf(gson.toJson("{Success!: success}"));
+//            return gson.toJson("{'Success!': 'success'}");
+//        });
 
-                return gson.toJson(Document.parse(search.toJson()));
-
-            } else {
-                //can't find member
-                return "User not found";
-            }
-        });
-
-        get("/posts/", (req, res) -> {// fetches all the posts from database
+        get("/post/getAll", (req, res) -> {// fetches all the posts from database
+            System.out.println("path: /post/getAll");
             List<Document> posts = new ArrayList<>();
             List<Document> doc = postsCollection.find().into(new ArrayList<>());
 
@@ -226,7 +225,50 @@ public class SparkServer {
 
         });
 
-        post("/posts/", (req, res) -> {// creating a new post pass in an object with many items in it
+        get("/post/search", (req, res) -> {// /posts/search?id=7
+            String searchKeyword = req.queryParams("keyword");
+            System.out.println("path: /post/search, keyword:" + req.queryParams("keyword"));
+
+            PostSearchByIdRequest searchByIdRequest = gson.fromJson(searchKeyword, PostSearchByIdRequest.class);
+            Document search = postsCollection.find(eq("title", searchByIdRequest.id)).first();
+            if (search != null) {// find record where role is x
+                System.out.println("post found");
+
+                return gson.toJson(Document.parse(search.toJson()));
+
+            } else {
+                //can't find member
+                return "Post not found";
+            }
+        });
+
+        // add some posts to db. For demo purposes only
+        get("/demo/init", (req, res) -> {
+            System.out.println("path: /demo/init");
+
+            List<List<String>> posts = new ArrayList<>();
+            posts.add(List.of(LocalDateTime.now().toString(), "fresh grad looking for FTE roles", "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"));
+            posts.add(List.of(LocalDateTime.now().toString(), "sophomore resume for first internship", "ea molestias quasi exercitationem repellat qui ipsa sit aut"));
+            posts.add(List.of(LocalDateTime.now().toString(), "some other title", "eum et est occaecati"));
+
+            for (int i = 0; i < posts.size(); i++) {
+                System.out.printf("Inserting " + posts.get(i).get(1) + "\n");
+                try {
+                    Document doc = new Document("postDate", posts.get(i).get(0))
+                            .append("title", posts.get(i).get(1))
+                            .append("description", posts.get(i).get(2));
+                    // insert document into collection
+                    postsCollection.insertOne(doc);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+            return "Initialized demo posts";
+        });
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        post("/post/create", (req, res) -> {// creating a new post pass in an object with many items in it
             String body = req.body();
 
             PostDTO newPost = gson.fromJson(body, PostDTO.class);
@@ -246,22 +288,6 @@ public class SparkServer {
                 ex.printStackTrace();
             }
             return "Done";
-        });
-
-        post("/posts/search/", (req, res) -> {// /posts/search?id=7
-            String body = req.body();
-            PostSearchByIdRequest searchByIdRequest = gson.fromJson(body, PostSearchByIdRequest.class);
-            System.out.println("body received"+ body);
-            Document search = postsCollection.find(eq("postId", searchByIdRequest.id)).first();
-            if (search != null) {// find record where role is x
-                System.out.println("post found");
-
-                return gson.toJson(Document.parse(search.toJson()));
-
-            } else {
-                //can't find member
-                return "Post not found";
-            }
         });
 
         post("/posts/user/", (req, res) -> {// creating a new user
