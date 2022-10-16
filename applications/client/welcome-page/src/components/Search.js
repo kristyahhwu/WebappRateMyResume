@@ -4,11 +4,19 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-const SearchPage = () => {  
+const Home = () => {  
     const [postList, setPostList] = useState([]);
 
     const handleSearch = searchEvent =>{
       const inputKeyword = searchEvent.target.keyword.value
+      searchEvent.preventDefault()
+    //   Axios({
+    //     method: 'post',
+    //     url: 'http://localhost:4321/post/search',
+    //     data: {
+    //       firstName: 'Fred',
+    //       lastName: 'Flintstone'
+    //     }})
       Axios.get(`http://localhost:4321/post/search`, {
         params: {
           keyword: inputKeyword
@@ -35,9 +43,9 @@ const SearchPage = () => {
 
         <div> {postList.title}</div>
 
-        {Object.values(postList).map((post) => <p key={post.id}>{post.id} {post.title}</p>)}
+        {Object.values(postList).map((post) => <p key={post.title}>{post.title} <br/> {post.description}</p>)}
       </div>
     )
   }
   
-  export default SearchPage;
+  export default Home;
