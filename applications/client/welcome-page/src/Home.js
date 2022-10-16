@@ -14,6 +14,7 @@ const Home = () => {
       Axios.get(`https://jsonplaceholder.typicode.com/posts/${[databuttonClick]}`)
         .then(res => {
           setData(res.data)
+          setId(res.data.id)
         }).catch(error => console.log(error))
     }, [databuttonClick])
 
@@ -51,6 +52,7 @@ const Home = () => {
         <button type="button" onClick = {handleSearch}>Search</button>
         <div> {data.title}</div>
 
+        {Object.values(data).map((d) => <li key={d.id}>{d.id} {d.title}</li>)}
 
         {/* <div className="Home">
                 {data.map((d) => <li key={d.id}>{d.id} {d.title}</li>)}
