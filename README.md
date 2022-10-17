@@ -27,6 +27,14 @@
 
 ## NO code needs to be stored in the root of your repository. You may rename the application folder if you like to your team's application name. But all source code related to your team's application should be stored inside the application folder.
 
-## Install docker on GCE VM:
-run:  
-`sudo apt-get install docker.io`
+## Developer Notes  
+### Initial setup for VM instances in Google Cloud Platform  
+Run the following command to install docker:  
+`sudo apt-get install docker.io`  
+
+### Running mongodb locally  
+NOTE: You need to create an account in [docker hub](https://hub.docker.com/) to pull container images from the registry. Refer To [this article](https://docs.docker.com/engine/reference/commandline/login/) if you run into credential issues.  
+From `/applications` directory, run the following command:  
+`docker compose up`  
+You can interact with the database using mongoExpress by entering this address in your browser URL:  
+`localhost:8081`
