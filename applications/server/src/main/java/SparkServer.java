@@ -184,6 +184,13 @@ public class SparkServer {
         MongoCollection<Document> resumeCollection = db.getCollection("resumeCollection");
 
         Gson gson = new Gson();
+        get("/", (req, res) -> {
+            return "Backend is running!";
+        });
+
+        get("/", (req, res) -> {
+            return "Server is running";
+        });
 
         // set CORS policy during preflight check
         options("/*", (request, response) -> {

@@ -8,7 +8,7 @@ const Home = () => {
     const [postList, setPostList] = useState([]);
 
     useEffect(() => {
-      Axios.get(`http://localhost:4321/post/getAll`)
+      Axios.get(`http://34.94.186.97:4321/post/getAll`)
         .then(res => {
           setPostList(res.data)
           console.log('URL: posts/ keyword:')
@@ -17,7 +17,7 @@ const Home = () => {
     }, [])
     
     const handleInit = () => {
-      Axios.get(`http://localhost:4321/demo/init`)
+      Axios.get(`http://34.94.186.97:4321/demo/init`)
         .then(res => {
           console.log(res)
         }).catch(error => console.log(error))
