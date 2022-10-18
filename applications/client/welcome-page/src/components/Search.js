@@ -17,7 +17,7 @@ const Home = () => {
     //       firstName: 'Fred',
     //       lastName: 'Flintstone'
     //     }})
-      Axios.get(`http://localhost:4321/post/search`, {
+      Axios.get(`http://34.94.186.97:4321/post/search`, {
         params: {
           keyword: inputKeyword
         }
