@@ -1,4 +1,4 @@
-import static com.mongodb.client.model.Filters.*;
+import static internal.service.RoutesHandler.*;
 import static spark.Spark.*;
 import static spark.Spark.before;
 
@@ -6,8 +6,6 @@ import static spark.Spark.before;
 import com.google.gson.Gson;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
-import com.mongodb.MongoCredential;
-import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
@@ -21,7 +19,7 @@ import java.util.*;
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSBuckets;
 import com.mongodb.client.gridfs.model.GridFSUploadOptions;
-import org.bson.BsonBinarySubType;
+import internal.service.RoutesHandler;
 import org.bson.Document;
 import org.bson.types.Binary;
 import org.bson.types.ObjectId;
@@ -163,6 +161,8 @@ can be used by other users
 public class SparkServer {
 
     public static void main(String[] args) {
+        RoutesHandler handler = new RoutesHandler();
+
         port(4321);
 
         // open connection
@@ -184,95 +184,15 @@ public class SparkServer {
         MongoCollection<Document> resumeCollection = db.getCollection("resumeCollection");
 
         Gson gson = new Gson();
-        get("/", (req, res) -> {
-            return "Backend is running!";
-        });
 
-        get("/", (req, res) -> {
-            return "Server is running";
-        });
+        //Set CORS policy
+        before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
+        options("/*", handler.handlePreflight);
 
-        // set CORS policy during preflight check
-        options("/*", (request, response) -> {
-
-            String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
-            if (accessControlRequestHeaders != null) {
-                response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
-            }
-
-            String accessControlRequestMethod = request.headers("Access-Control-Request-Method");
-            if (accessControlRequestMethod != null) {
-                response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
-            }
-            return "OK";
-        });
-        before((request, response) -> {
-            response.header("Access-Control-Allow-Origin", "*");
-        });
-
-        get("/", (req, res) -> {
-            return "OK";
-        });
-
-//        get("/post/search", (req, res) -> {
-//            System.out.println("path: /post/search, keyword:" + req.queryParams("keyword"));
-//            System.out.printf(gson.toJson("{Success!: success}"));
-//            return gson.toJson("{'Success!': 'success'}");
-//        });
-
-        get("/post/getAll", (req, res) -> {// fetches all the posts from database
-            System.out.println("path: /post/getAll");
-            List<Document> posts = new ArrayList<>();
-            List<Document> doc = postsCollection.find().into(new ArrayList<>());
-
-            for (Document d : doc) {
-                posts.add(Document.parse(d.toJson()));
-            }
-            return gson.toJson(posts);
-
-        });
-
-        get("/post/search", (req, res) -> {// /posts/search?id=7
-            String searchKeyword = req.queryParams("keyword");
-            System.out.println("path: /post/search, keyword:" + req.queryParams("keyword"));
-
-            // Modify to get partial match: https://www.mongodb.com/docs/realm/sdk/java/examples/mongodb-remote-access/
-            Document search = postsCollection.find(eq("title", searchKeyword)).first();
-            System.out.println("search results: " + search.toString());
-            if (search != null) {// find record where role is x
-                System.out.println("post found");
-
-                return gson.toJson(Document.parse(search.toJson()));
-
-            } else {
-                //can't find member
-                return "Post not found";
-            }
-        });
-
-        // add some posts to db. For demo purposes only
-        get("/demo/init", (req, res) -> {
-            System.out.println("path: /demo/init");
-
-            List<List<String>> posts = new ArrayList<>();
-            posts.add(List.of(LocalDateTime.now().toString(), "fresh grad looking for FTE roles", "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"));
-            posts.add(List.of(LocalDateTime.now().toString(), "sophomore resume for first internship", "ea molestias quasi exercitationem repellat qui ipsa sit aut"));
-            posts.add(List.of(LocalDateTime.now().toString(), "some other title", "eum et est occaecati"));
-
-            for (int i = 0; i < posts.size(); i++) {
-                System.out.printf("Inserting " + posts.get(i).get(1) + "\n");
-                try {
-                    Document doc = new Document("postDate", posts.get(i).get(0))
-                            .append("title", posts.get(i).get(1))
-                            .append("description", posts.get(i).get(2));
-                    // insert document into collection
-                    postsCollection.insertOne(doc);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-            return "Initialized demo posts";
-        });
+        get("/", handler.handleHome);
+        get("/post/getAll", handler.handleGetAll);
+        get("/post/search", handler.handleSearch);
+        get("/demo/init", handler.handleInitDemo);
 
         //--------------------------------------------------------------------------------------------------------------
 
