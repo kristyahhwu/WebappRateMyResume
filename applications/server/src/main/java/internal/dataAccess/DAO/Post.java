@@ -18,8 +18,8 @@ can be used by other users
     String postId;
     String title;
     String description;
-    LocalDate postDate;
-    String postAuthor;
+    LocalDate creationDate;
+    String author;
     ObjectId resume;
     String comments;
     int rating;
@@ -32,8 +32,8 @@ can be used by other users
         this.postId = param.postId;
         this.title = param.title;
         this.description = param.description;
-        this.postDate = param.postDate;
-        this.postAuthor = param.postAuthor;
+        this.creationDate = param.postDate;
+        this.author = param.postAuthor;
         this.resume = param.resume;
         this.comments = param.comments;
         this.rating = param.rating;

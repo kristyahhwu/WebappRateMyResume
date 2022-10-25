@@ -19,7 +19,7 @@ import java.util.*;
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSBuckets;
 import com.mongodb.client.gridfs.model.GridFSUploadOptions;
-import internal.dataAccess.DTO.ApplicantDTO;
+import internal.dataAccess.DTO.UserDTO;
 import internal.dataAccess.DTO.PostDTO;
 import internal.service.RoutesHandler;
 import internal.service.Utilities;

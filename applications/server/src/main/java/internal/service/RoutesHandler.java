@@ -5,7 +5,8 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import internal.dataAccess.DTO.ApplicantDTO;
+import internal.dataAccess.DAO.User;
+import internal.dataAccess.DTO.UserDTO;
 import internal.dataAccess.DTO.PostDTO;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -151,9 +152,9 @@ public class RoutesHandler {
 
     public spark.Route handleCreateUser = ((request, response) -> {
         String body = request.body();
-        ApplicantDTO newUser = new ApplicantDTO();
+        UserDTO newUser = new UserDTO();
         try {
-            newUser = gson.fromJson(body, ApplicantDTO.class);
+            newUser = gson.fromJson(body, UserDTO.class);
         }catch(Exception e){
             e.printStackTrace();
         }

@@ -2,7 +2,7 @@ package internal.dataAccess.DAO;
 
 import java.time.LocalDate;
 
-public class Applicant{
+public class User {
     /*
     Entity 1: 	Applicant
     Items: 		Each user will have a unique account ID which will be linked to any resumes they
@@ -17,11 +17,11 @@ public class Applicant{
     LocalDate creationDate;
     String email;
 
-    public Applicant(){
+    public User(){
 
     }
 
-    public Applicant(String userId, String username, LocalDate creationDate, String email) {
+    public User(String userId, String username, LocalDate creationDate, String email) {
         this.userId = userId;
         this.username = username;
         this.creationDate = creationDate;
