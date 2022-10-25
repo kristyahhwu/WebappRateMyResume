@@ -58,22 +58,45 @@ public class RoutesHandler {
     public spark.Route handleSearch = (request, response) -> {
         String searchKeyword = request.queryParams("keyword");
         System.out.println("path: /post/search, keyword:" + request.queryParams("keyword"));
-
         Gson gson = new Gson();
+//        Document search = null;
+        // try {
+        // // Modify to get partial match:
+        // https://www.mongodb.com/docs/realm/sdk/java/examples/mongodb-remote-access/
+        // search = postsCollection.find(eq("title", searchKeyword)).first();
+        // }catch(Exception e){
+        // e.printStackTrace();
+        // }
 
-        // Modify to get partial match: https://www.mongodb.com/docs/realm/sdk/java/examples/mongodb-remote-access/
-        Document search = postsCollection.find(eq("title", searchKeyword)).first();
-        System.out.println("search results: " + search.toString());
-        if (search != null) {// find record where role is x
+        Document regQuery = new Document()
+                .append("$regex", searchKeyword)
+                .append("$options", "i");
+        Document findQuery = new Document().append("title", regQuery);
+        ArrayList<Document> results = null;
+        try {
+            results = postsCollection.find(findQuery).into(new ArrayList<>());
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        for(int i =0; i < results.size(); i++){
+            System.out.println(results.get(i).toJson());
+        }
+
+//    System.out.println("search results: "+search.toString());if(search!=null)
+//        System.out.println("search results: " + results.toString());
+        if(results != null)
+        {// find record where role is x
             System.out.println("post found");
 
-            return gson.toJson(Document.parse(search.toJson()));
-
-        } else {
-            //can't find member
+//        return gson.toJson(Document.parse(search.toJson()));
+            return gson.toJson(results);
+        }else
+        {
+            // can't find member
             return "Post not found";
         }
     };
+
 
     public spark.Route handleInitDemo = (request, response) -> {
         System.out.println("path: /demo/init");
@@ -82,6 +105,12 @@ public class RoutesHandler {
         posts.add(List.of(LocalDateTime.now().toString(), "fresh grad looking for FTE roles", "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"));
         posts.add(List.of(LocalDateTime.now().toString(), "sophomore resume for first internship", "ea molestias quasi exercitationem repellat qui ipsa sit aut"));
         posts.add(List.of(LocalDateTime.now().toString(), "some other title", "eum et est occaecati"));
+        posts.add(List.of(LocalDateTime.now().toString(),"john","desc1"));
+        posts.add(List.of(LocalDateTime.now().toString(),"John","desc2"));
+        posts.add(List.of(LocalDateTime.now().toString(),"jo","desc3"));
+        posts.add(List.of(LocalDateTime.now().toString(),"johnathan","desc4"));
+        posts.add(List.of(LocalDateTime.now().toString(),"BOJOJO","desc5"));
+
 
         for (int i = 0; i < posts.size(); i++) {
             System.out.printf("Inserting " + posts.get(i).get(1) + "\n");
