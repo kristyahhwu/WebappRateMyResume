@@ -1,11 +1,13 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Router, Switch, Route, Routes, Link } from "react-router-dom";
 import Teams from "./Teams";
 import Home from "./components/Home";
 import Search from "./components/Search"
 import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 
+import { getPosts } from './actions/posts'
 import image from './images/image.png'
 import Posts from './components/Posts/Posts'
 import Form from './components/Form/Form'
@@ -13,6 +15,12 @@ import useStyles from './styles';
 
 const App = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
+
   return (
     <>
       <Container maxWidth="lg">
