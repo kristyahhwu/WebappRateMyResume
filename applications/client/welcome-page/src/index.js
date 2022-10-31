@@ -9,9 +9,9 @@ import { applyMiddleware, compose } from 'redux';
 import { configureStore } from "@reduxjs/toolkit";
 import thunk from 'redux-thunk';
 
-import reducers from './src/reducers';
+import { reducers } from './reducers';
 
-const store = configureStore(reducers, compose(applyMiddleware(thunk)));
+const store = configureStore({ reducer: reducers });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
