@@ -10,6 +10,8 @@ import org.bson.types.ObjectId;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Utilities {
     public static byte[] LoadImage(String filePath) throws Exception {
@@ -41,5 +43,18 @@ public class Utilities {
             e.printStackTrace();
         }
         return fileId;
+    }
+
+    public static LocalDateTime extractTime(String time) {
+        // expect the time format to be year-month-date-hour-minute
+        String[] parts = time.split("-");
+        int year = Integer.parseInt(parts[0]);
+        int month = Integer.parseInt(parts[1]);
+        int day = Integer.parseInt(parts[2]);
+        int hour = Integer.parseInt(parts[3]);
+        int minute = Integer.parseInt(parts[4]);
+
+        LocalDateTime currentTime = LocalDateTime.of(year, month, day, hour, minute);
+        return currentTime;
     }
 }

@@ -16,6 +16,7 @@ public class User {
     String username;
     LocalDate creationDate;
     String email;
+    String password;
 
     public User(){
 
