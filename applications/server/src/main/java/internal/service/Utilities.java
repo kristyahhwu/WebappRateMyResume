@@ -19,7 +19,7 @@ import java.awt.image.BufferedImage;
 public class Utilities {
     public static byte[] LoadImage(String filePath) throws Exception {
         File file = new File(filePath);
-        int size = (int)file.length();
+        int size = (int) file.length();
         byte[] buffer = new byte[size];
         FileInputStream in = new FileInputStream(file);
         in.read(buffer);
@@ -60,6 +60,7 @@ public class Utilities {
         LocalDateTime currentTime = LocalDateTime.of(year, month, day, hour, minute);
         return currentTime;
     }
+
     public static byte[] convertPDFToByteArray(String path) throws FileNotFoundException {
         File file = new File(path);
         FileInputStream fis = new FileInputStream(file);
@@ -84,7 +85,7 @@ public class Utilities {
         PDFRenderer pdfRenderer = new PDFRenderer(document);
         for (int i = 0; i < document.getNumberOfPages(); i++) {
             BufferedImage bim = pdfRenderer.renderImageWithDPI(i, 300, ImageType.RGB);
-            ImageIOUtil.writeImage(bim, String.format("/home/jmao/pdfconvert/%s-%d.%s", filename, i + 1, "jpg"), 300);
+            ImageIOUtil.writeImage(bim, String.format("%s-%d.%s", filename, i + 1, "jpg"), 300);
         }
         document.close();
     }
@@ -103,4 +104,6 @@ public class Utilities {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
 }
