@@ -50,10 +50,10 @@ const Search = () => {
       {/* <h1>RateMyResume</h1>
       <h2><Link to="/">home</Link></h2>
       <h2><Link to="/search">search</Link></h2> */}
-      <SearchBar type="text" placeholder="Search..." onSubmit={handleSearch}>
+      <form type="text" placeholder="Search..." onSubmit={handleSearch}>
         <input type="text" name="keyword"></input>
         <input type="submit" value="Search"></input>
-      </SearchBar>
+      </form>
 
       <div> {postList.title}</div>
 
