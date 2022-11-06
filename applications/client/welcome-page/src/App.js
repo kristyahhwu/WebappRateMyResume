@@ -10,7 +10,7 @@ import { getPosts } from './actions/posts'
 import Posts from './components/Posts/Posts'
 import Form from './components/Form/Form'
 import useStyles from './styles';
-import Login from './login/Login';
+import Login from './components/login/Login';
 import Navbar from './components/Navbar/Navbar';
 import Signup from './components/Registration/Signup';
 

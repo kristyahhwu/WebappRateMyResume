@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import logo200 from '../../images/logo200.png';
 import useStyles from './styles'
 import Search from '../Search';
-import Login from '../../login/Login.js';
+import Login from '../login/Login.js';
 
 
 const Navbar = () => {

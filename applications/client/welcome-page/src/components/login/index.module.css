@@ -1,13 +1,17 @@
-.title {
-  justify-content: center !important;
+.form {
+  display: flex;
+  margin-left: 100px;
+  margin-right: 100px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  border-radius: 1rem;
+  background-color: #e7f1eb !important;
 }
 
-.form {
-  margin: 10px 10px 10px 10px;
-  background-color: #e7f1eb !important;
-  padding: 10px;
-  border-radius: 1rem;
-  margin: 30px 30px 30px 30px;
+.title {
+  justify-content: center;
 }
 
 .formLabel {

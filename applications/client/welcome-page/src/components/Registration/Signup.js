@@ -37,7 +37,7 @@ const FormSignup = () => {
 
 
         errors = validate(data);
-        console.log("errors..........: ", errors);
+        console.log("errors: ", errors);
 
 
         if ((errors.username).length > 0 || (errors.email).length > 0 || (errors.password).length > 0) {
