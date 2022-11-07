@@ -66,7 +66,7 @@ public class SparkServer {
 
         get("/post/view", handler.handleViewPost); // will have postid in the query parameter.
                                                         // See handleSearch for example, returns a single Post
-        put("/post/view/like", handler.handleLike); // will have postid, userid in the request body
+        put("/post/like", handler.handleLike); // will have postid, userid in the request body
                                                         // (not query parameters).
         put("/post/comment", handler.handleComment); // will have postid, user (the whole class object, not just id),
                                                             // comment, time as request body.

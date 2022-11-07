@@ -170,6 +170,7 @@ public class RoutesHandler {
 
     public spark.Route handleCreateUser = ((request, response) -> {
         String body = request.body();
+        System.out.println("Creating user:\n" + body.toString());
 
         UserDTO newUser = new UserDTO();
         try {
@@ -215,6 +216,7 @@ public class RoutesHandler {
 
     public spark.Route handleLike = ((request, response) -> {
         String body = request.body();
+        System.out.println("/post/like" + body.toString());
 
         HandleLikeDTO newLike = new HandleLikeDTO();
         try {
