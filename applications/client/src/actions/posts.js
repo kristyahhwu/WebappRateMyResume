@@ -22,6 +22,16 @@ export const createPost = (post) => async (dispatch) => {
     }
 }
 
+export const viewPost = (postid) => async (dispatch) => {
+    try {
+        const { data } = await api.viewPost(postid);
+
+        dispatch({ type: 'VIEW', payload: data });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export const likePost = (id) => async (dispatch) => {
     try {
         const { data } = await api.likePost(id);
