@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const url = 'http://localhost:4321/post';
+export const baseUrl = 'http://localhost:4321/';
 
-export const fetchPosts = () => axios.get(url + '/getAll');
-export const createPost = (newPost) => axios.post(url + '/create', newPost);
-export const viewPost = (postid) => axios.get(url + '/view', {
+export const fetchPosts = () => axios.get(baseUrl + '/post/getAll');
+export const createPost = (newPost) => axios.post(baseUrl + '/post/create', newPost);
+export const viewPost = (postid) => axios.get(baseUrl + '/post/view', {
     params: {
         postid: postid
   }});
-export const likePost = (id) => axios.patch(`${url}/${id}/likePost`);
+export const likePost = (id) => axios.put(`${baseUrl}/post/${id}/like`);

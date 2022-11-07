@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { viewPost, fetchPosts } from "../api";
+import { viewPost, fetchPosts, baseUrl } from "../api";
 import { useDispatch} from 'react-redux';
 import Axios from 'axios';
-
-let editMode = false;
-
 
 const PostDetail = () => {
     console.log(useParams())
@@ -21,7 +18,7 @@ const PostDetail = () => {
     //   }, [dispatch]);
 
     useEffect(() => {
-        Axios.get(`http://localhost:4321/post/view`, {
+        Axios.get(`${baseUrl}/post/view`, {
             params: {
               postid: id
             }
@@ -33,12 +30,22 @@ const PostDetail = () => {
             }).catch(error => console.log(error))
       }, []);
 
+    const likePost = () => {
+        Axios.put(`${baseUrl}/post/like`, {
+            body: {
+                postid: id,
+                userid: 'aaa',
+            }
+        })
+    }
+
     console.log(id)
 
     return (
         <div className="imgDiv">
             <div> { post.title } </div>
             <div> { post.description } </div>
+            <button onClick={ likePost }> Like </button>
         </div>
     );
 }
