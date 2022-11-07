@@ -1,8 +1,10 @@
 import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
+import axios from "axios";
+
 import validate from "./validate";
 import styles from "./Signup.module.css";
-import axios from "axios";
+import { baseUrl } from "../../api";
 
 const FormSignup = () => {
     const [username, setUsername] = React.useState("");
@@ -54,8 +56,7 @@ const FormSignup = () => {
         } else {
             const config = {
                 method: "post",
-                url: "/user/create/",
-                // url: "http://34.94.186.97:3000/user/create/",
+                url: `${baseUrl}/user/create/`,
                 data: data,
             };
 
