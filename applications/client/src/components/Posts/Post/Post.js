@@ -6,6 +6,7 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import useStyles from './styles';
 import { useDispatch } from 'react-redux';
+import { Link } from "react-router-dom";
 
 import { likePost } from '../../../actions/posts';
 
@@ -32,7 +33,7 @@ const Post = ({ post }) => {
             {/* <div className={classes.details}>
                 <Typography variant="body2" color="textSecondary">{post.tags.map((tag) => `#${tag} `)}</Typography>
             </div> */}
-            <Typography className={classes.title} variant="h5" gutterBottom>{post.title}</Typography>
+            <Typography className={classes.title} variant="h5" gutterBottom><Link to={`/post/${post.postId}`}>{post.title}</Link> </Typography>
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">{post.message}</Typography>
             </CardContent>

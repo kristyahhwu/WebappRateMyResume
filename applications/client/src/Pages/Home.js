@@ -1,42 +1,44 @@
-import '../App.css';
-import Axios from 'axios';
-import React from "react";
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import './App.css';
+import React, { useEffect } from 'react';
+import { Container, AppBar, Typography, Grow, Grid, Box } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 
-const Home = () => {  
-    const [postList, setPostList] = useState([]);
+import { getPosts } from '../actions/posts'
+import Posts from '../components/Posts/Posts'
+import Form from '../components/Form/Form'
+import Navbar from '../components/Navbar/Navbar';
+import useStyles from './styles';
 
-    useEffect(() => {
-      Axios.get(`http://34.94.186.97:4321/post/getAll`)
-        .then(res => {
-          setPostList(res.data)
-          console.log('URL: posts/ keyword:')
-          console.log("got response:", res)
-        }).catch(error => console.log(error))
-    }, [])
-    
-    const handleInit = () => {
-      Axios.get(`http://34.94.186.97:4321/demo/init`)
-        .then(res => {
-          console.log(res)
-        }).catch(error => console.log(error))
-    }
-    
+const Home = () => {
+  const classes = useStyles();
+  const dispatch = useDispatch();
 
-    console.log("rendering posts")
-    return (
-      < div className="App">
-        <h1>RateMyResume</h1>
-        <h2><Link to="/">home</Link></h2>
-        <h2><Link to="/search">search</Link></h2>
-        <h2 onClick={handleInit}>Init demo</h2>
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
 
-        <div> {postList.title}</div>
+  return (
+    <>
+      <Container maxWidth="lg" display="flex" justifycontent="space-between" >
+        <Navbar></Navbar>
+        <Grow in>
+          <Container>
+            <Grid className="classes.mainContainer" container justifycontent="space-between" alignItems="stretch" spacing={3}>
+              <Grid item xs={12} sm={7}>
+                {/* <Home></Home> */}
+                <Posts />
 
-        {Object.values(postList).map((post) => <p key={post.title}>{post.title} <br/> {post.description}</p>)}
-      </div>
-    )
-  }
-  
-  export default Home;
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <Form />
+
+              </Grid>
+            </Grid>
+          </Container>
+        </Grow>
+      </Container>
+    </>
+  );
+}
+
+export default Home;

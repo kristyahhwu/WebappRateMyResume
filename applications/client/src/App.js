@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 
 import { getPosts } from './actions/posts'
 import Posts from './components/Posts/Posts'
+import PostDetail from './Pages/PostDetail';
 import Form from './components/Form/Form'
 import useStyles from './styles';
 import Login from './components/login/Login';
@@ -24,30 +25,13 @@ const App = () => {
 
   return (
     <>
-      <Container maxWidth="lg" display="flex" justifycontent="space-between" >
-        <Navbar></Navbar>
-        <Grow in>
-          <Container>
-            <Grid className="classes.mainContainer" container justifycontent="space-between" alignItems="stretch" spacing={3}>
-              <Grid item xs={12} sm={7}>
-                {/* <Home></Home> */}
-                <Posts />
-
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <Form />
-
-              </Grid>
-            </Grid>
-          </Container>
-        </Grow>
-      </Container>
       <Routes>
         {/* <Route path="/" element={<Home />} /> */}
-        <Route path="/" exact component={() => <Navigate to="/posts" />} />
+        <Route path="/" element ={<Home />} />
         <Route path="/search" exact element={<Search />} />
         <Route path="/user/login" exact element={<Login />} />
         <Route path="/user/create/" exact element={<Signup />} />
+        <Route path="/post/:id" element={<PostDetail />} />
       </Routes>
     </>
   );
