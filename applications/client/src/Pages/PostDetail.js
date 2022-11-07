@@ -32,10 +32,14 @@ const PostDetail = () => {
 
     const likePost = () => {
         Axios.put(`${baseUrl}/post/like`, {
-            body: {
                 postid: id,
-                userid: 'aaa',
-            }
+                userid: 'mike',
+        })
+    }
+
+    const handleComment = () => {
+        Axios.put(`${baseUrl}/post/comment`, {
+            //body here
         })
     }
 
