@@ -76,6 +76,11 @@ public class SparkServer {
         post("/user/create/", handler.handleCreateUser);
 
         get("/demo/init", handler.handleInitDemo);
+
+        get("/post/comment", handler.handleGetCommentsForPost);// fetches all comments for a post whose postid is passed in
+                                                                // as a query parameter
+        get("/post/view/like", handler.handleNumberOfLikes); // retrieves number of likes for a post whose postid is passed in
+                                                                // as a query parameter
         //--------------------------------------------------------------------------------------------------------------
 
 
