@@ -361,4 +361,35 @@ public class RoutesHandler {
         // remove session from user if exist
         return gson.toJson(new UserLoginResponseDTO(false, "User logged out"));
     });
+    //GetNumberOfLikesForPost()
+    public spark.Route handleNumberOfLikes = ((request, response) -> {
+        String postId = request.queryParams("postid");
+        List<Document> likeResult = null;
+        try {
+
+            likeResult = postLikesCollection.find(eq("postid", postId)).into(new ArrayList<>());
+            return "Number of likes: " + likeResult.size();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return "Number of likes: " + (likeResult == null ? 0 : likeResult.size());
+    });
+
+    //GetCommentsForPost()
+    public spark.Route handleGetCommentsForPost = ((request, response) -> {
+        String postId = request.queryParams("postid");
+
+        List<Document> comments = null;
+        try {
+
+            comments = postCommentsCollection.find(eq("postid", postId)).into(new ArrayList<>());
+
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return gson.toJson(comments);
+    });
+
 }
