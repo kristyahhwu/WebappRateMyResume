@@ -5,6 +5,7 @@ import axios from "axios";
 import validate from "./validate";
 import styles from "./Signup.module.css";
 import { baseUrl } from "../../api";
+import Navbar from "../Navbar/Navbar";
 
 const FormSignup = () => {
     const [username, setUsername] = React.useState("");
@@ -73,6 +74,7 @@ const FormSignup = () => {
 
     return (
         <Container>
+            <Navbar></Navbar>
             <div className={styles.registerComponent}>
                 <Row>
                     <Col lg={7}>

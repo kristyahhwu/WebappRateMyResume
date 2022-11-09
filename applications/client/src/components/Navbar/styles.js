@@ -1,18 +1,31 @@
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
+import { ImportantDevices } from '@material-ui/icons';
 
 export default makeStyles((theme) => ({
+    Search: {
+        position: "absolute",
+        width: '400px',
+    },
     appBar: {
         borderRadius: 15,
-        margin: '30px 0',
-        display: 'flex',
+        margin: "30px -1px",
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: "space-between",
         alignItems: 'center',
-        padding: '10px 50px',
         [theme.breakpoints.down('sm')]: {
             flexDirection: 'column',
         },
+    },
+    submitButton: {
+        borderRadius: 5,
+        color: "#ffffff",
+        backgroundColor: "#38C6BD",
+        fontSize: "15px",
+        fontWeight: "200",
+        marginBottom: "5px",
+        marginTop: "5px",
+        contrastText: "#FFFFFF",
     },
     heading: {
         color: theme.palette.primary.main,
@@ -58,19 +71,5 @@ export default makeStyles((theme) => ({
     purple: {
         color: theme.palette.getContrastText(deepPurple[500]),
         backgroundColor: deepPurple[500],
-    },
-    search: {
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: alpha(theme.palette.common.white, 0.15),
-        '&:hover': {
-            backgroundColor: alpha(theme.palette.common.white, 0.25),
-        },
-        marginLeft: 0,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(1),
-            width: 'auto',
-        },
     },
 }));

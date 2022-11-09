@@ -2,10 +2,9 @@ import React from 'react'
 import { AppBar, Typography, Button } from '@material-ui/core'
 import { Link } from 'react-router-dom';
 
-import logo200 from '../../images/logo200.png';
+import logo from '../../images/logo.svg';
 import useStyles from './styles'
 import Search from '../Search';
-import Login from '../login/Login.js';
 
 
 const Navbar = () => {
@@ -14,11 +13,11 @@ const Navbar = () => {
     return (
         <AppBar className={classes.appBar} position="static" color="inherit" >
             <Typography component={Link} to="/" className={classes.heading} sx={{ mr: 2, display: { xs: "none", md: "flex" } }}>
-                <img className={classes.image} src={logo200} alt="images" height="80" />
+                <img className={classes.image} src={logo} alt="images" height="80" />
             </Typography>
-            <Search className={classes.Search} size="large"></Search>
-            <Button variant="contained" color="primary" component={Link} to="/user/login">Login</Button>
-            <Button variant="contained" color="default" component={Link} to="/user/create">Register</Button>
+            <Search fullWidth className={classes.Search} size="large"></Search>
+            <Button className={classes.submitButton} color="#66bb6a" variant="contained" component={Link} to="/user/login">Login</Button>
+            <Button className={classes.submitButton} component={Link} to="/user/create">Register</Button>
         </AppBar>
 
     )

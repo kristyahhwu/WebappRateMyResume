@@ -2,6 +2,9 @@ import React from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import styles from "./index.module.css";
 import axios from "axios";
+import { Typography } from "@material-ui/core";
+
+import Navbar from "../Navbar/Navbar";
 
 const Login = () => {
     const [username, setUsername] = React.useState("");
@@ -37,9 +40,10 @@ const Login = () => {
 
     return (
         <div className="container text-center">
+            <Navbar></Navbar>
             <Container>
                 <Form className={styles.form}>
-                    <div> Register Your Account Here</div>
+                    <Typography size="h5"> Welcome</Typography>
                     <Col lg={4}>
                         <Row>
                             <div className={styles.formInputComponent}>

@@ -3,10 +3,14 @@ import Axios from 'axios';
 import React from "react";
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import SearchBar from "material-ui-search-bar";
+import { TextField } from '@material-ui/core';
+
+import useStyles from '../styles.js';
+import SearchBar from 'material-ui-search-bar';
 
 const Search = () => {
   const [postList, setPostList] = useState([]);
+  const classes = useStyles();
 
   const handleSearch = searchEvent => {
     const inputKeyword = searchEvent.target.keyword.value
@@ -18,18 +22,18 @@ const Search = () => {
     //       firstName: 'Fred',
     //       lastName: 'Flintstone'
     //     }})
-      Axios.get(`http://localhost:4321/post/search`, {
+    Axios.get(`http://localhost:4321/post/search`, {
       // Axios.get(`http://34.94.186.97:4321/post/search`, {
-        params: {
-          keyword: inputKeyword
-        }
-      })
-        .then(res => {
-          setPostList(res.data)
-          console.log('URL: /post/search keyword:', inputKeyword)
-          console.log("response:", res)
-        }).catch(error => console.log(error))
-    }    
+      params: {
+        keyword: inputKeyword
+      }
+    })
+      .then(res => {
+        setPostList(res.data)
+        console.log('URL: /post/search keyword:', inputKeyword)
+        console.log("response:", res)
+      }).catch(error => console.log(error))
+  }
 
   console.log("rendering posts")
   return (
@@ -48,5 +52,6 @@ const Search = () => {
     </div>
   )
 }
+// search bar function only works with <form>
 
 export default Search;
