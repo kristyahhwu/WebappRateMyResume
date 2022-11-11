@@ -32,7 +32,7 @@ public class Utilities {
 
     static Gson gson = new Gson();
 
-//    static MongoClientURI uri = new MongoClientURI("mongodb://admin:password@localhost:27017/");
+    static MongoClientURI uri = new MongoClientURI("mongodb://admin:password@localhost:27017/");
     // admin username and password is not setup correctly. Logging in without it
     static MongoClientURI uri = new MongoClientURI("mongodb://localhost:27017/");//auser:apassword@
     static MongoClient mongoClient = new MongoClient(uri);
@@ -249,6 +249,7 @@ public class Utilities {
         System.out.println("In handle view post: post id is " + postid);
         Document result = null;
         try {
+            // result = postsCollection.find(findQuery).into(new ArrayList<>());
             result = postsCollection.find(eq("postId", postid)).first();
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -317,6 +318,8 @@ public class Utilities {
         // verify if user has already liked the post
         Document likeResult = null;
         try {
+            // result = postsCollection.find(findQuery).into(new ArrayList<>());
+
             likeResult = postLikesCollection.find(and(eq("userid", newLike.userid), eq("postid", newLike.postid)))
                     .first();
         }catch (Exception e){
