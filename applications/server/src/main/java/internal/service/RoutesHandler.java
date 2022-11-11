@@ -23,12 +23,11 @@ import static com.mongodb.client.model.Filters.eq;
 public class RoutesHandler {
 
 
-
     Gson gson = new Gson();
 
-    //MongoClientURI uri = new MongoClientURI("mongodb://admin:Lg62318062@localhost:27017/");
+    MongoClientURI uri = new MongoClientURI("mongodb://admin:password@localhost:27017/");
     // admin username and password is not setup correctly. Logging in without it
-    MongoClientURI uri = new MongoClientURI("mongodb://localhost:27017/");//auser:apassword@
+//    MongoClientURI uri = new MongoClientURI("mongodb://localhost:27017/");//auser:apassword@
     MongoClient mongoClient = new MongoClient(uri);
     MongoDatabase db = mongoClient.getDatabase("UsersDatabase");
 
@@ -69,6 +68,7 @@ public class RoutesHandler {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
         }
+
         return gson.toJson(posts);
     };
 
@@ -153,10 +153,11 @@ public class RoutesHandler {
         System.out.println("Resume saved in DB with ID: "+ resumeId);
         // insert into transactions collection
         try {
-            Document doc = new Document("postId", UUID.randomUUID())
+            Document doc = new Document("postId", UUID.randomUUID().toString())
                     .append("postDate", LocalDateTime.now())
                     .append("postAuthor", newPost.postAuthor)
                     .append("title", newPost.title)
+                    .append("description", newPost.description)
                     .append("resume", resumeId);
             // insert document into collection
             postsCollection.insertOne(doc);
@@ -169,6 +170,7 @@ public class RoutesHandler {
 
     public spark.Route handleCreateUser = ((request, response) -> {
         String body = request.body();
+        System.out.println("Creating user:\n" + body.toString());
 
         UserDTO newUser = new UserDTO();
         try {
@@ -214,6 +216,7 @@ public class RoutesHandler {
 
     public spark.Route handleLike = ((request, response) -> {
         String body = request.body();
+        System.out.println("/post/like" + body.toString());
 
         HandleLikeDTO newLike = new HandleLikeDTO();
         try {
