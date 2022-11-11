@@ -66,6 +66,7 @@ const PostDetail = () => {
         <div className="imgDiv">
             <div> { post.title } </div>
             <div> { post.description } </div>
+            <img src={ post.resumeUrl } />
             <div className = "commentSection">
               {allComments.map((allComments, i) => (
                 <Typography key ={i}>
