@@ -2,7 +2,7 @@ package internal.service;
 
 import com.google.gson.Gson;
 import internal.dataAccess.DTO.PostDTO;
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ViewPostTest {
 
@@ -24,9 +24,10 @@ class ViewPostTest {
         String newPostID = Utilities.createPost(gson.toJson(newPost));
 //        Assert the post exists with the same details that we gave
         String searchResponse = Utilities.viewPost(newPostID);
-        Assert.assertNotEquals("Post not found", searchResponse);
+
+        assertNotEquals("Post not found", searchResponse);
         PostDTO responseDTO = gson.fromJson(searchResponse, PostDTO.class);
-        Assert.assertEquals(newPost.title, responseDTO.title);
+        assertEquals(newPost.title, responseDTO.title);
 //        Delete the post from the database
 
     }
