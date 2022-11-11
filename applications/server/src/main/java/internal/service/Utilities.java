@@ -32,9 +32,9 @@ public class Utilities {
 
     static Gson gson = new Gson();
 
-    static MongoClientURI uri = new MongoClientURI("mongodb://admin:password@localhost:27017/");
+    //static MongoClientURI uri = new MongoClientURI("mongodb://admin:password@localhost:27017/");
     // admin username and password is not setup correctly. Logging in without it
-//    MongoClientURI uri = new MongoClientURI("mongodb://localhost:27017/");//auser:apassword@
+    static MongoClientURI uri = new MongoClientURI("mongodb://localhost:27017/");//auser:apassword@
     static MongoClient mongoClient = new MongoClient(uri);
     static MongoDatabase db = mongoClient.getDatabase("UsersDatabase");
 
@@ -154,9 +154,10 @@ public class Utilities {
         System.out.println("body received"+ body);
         ObjectId resumeId = upload(newPost.filePath, newPost.fileName, db);
         System.out.println("Resume saved in DB with ID: "+ resumeId);
+        String newPostID = UUID.randomUUID().toString();
         // insert into transactions collection
         try {
-            Document doc = new Document("postId", UUID.randomUUID().toString())
+            Document doc = new Document("postId", newPostID)
                     .append("postDate", LocalDateTime.now())
                     .append("postAuthor", newPost.postAuthor)
                     .append("title", newPost.title)
@@ -168,12 +169,13 @@ public class Utilities {
         catch (Exception ex){
             ex.printStackTrace();
         }
-        return "Done";
+        return newPostID;
     }
 
     public static String initializeDemo() {
         List<List<String>> posts = new ArrayList<>();
-        posts.add(List.of(LocalDateTime.now().toString(), "fresh grad looking for FTE roles", "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"));
+        posts.add(List.of(LocalDateTime.now().toString(), "fresh grad looking for FTE roles",
+                "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"));
         posts.add(List.of(LocalDateTime.now().toString(), "sophomore resume for first internship", "ea molestias quasi exercitationem repellat qui ipsa sit aut"));
         posts.add(List.of(LocalDateTime.now().toString(), "some other title", "eum et est occaecati"));
         posts.add(List.of(LocalDateTime.now().toString(),"john","desc1"));
