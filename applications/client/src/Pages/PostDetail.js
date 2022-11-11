@@ -34,30 +34,28 @@ const PostDetail = () => {
             }).catch(error => console.log(error))
       }, []);
 
+    //TODO: Fix hardcoded userid after login is implemented 
     const likePost = () => {
         Axios.put(`${baseUrl}/post/like`, {
                 postid: id,
-                userid: 'mike',
+                userid: '5b9d19ef-67f2-4e53-bd12-2f20eee95230',
         })
     }
 
     const handleComment = async (e) => {
       e.preventDefault();
-      try{
-      const { data } = await axios.put(`${baseUrl}/post/comment`,
-      {
-        postid: post.id,
-        comment,
-      });
-      setComment("");
-      fetchPosts();
-    } 
-    catch (error){
-      console.log(error);
-    }
-        // Axios.put(`${baseUrl}/post/comment`, {
-        // //     body here
-        // })
+      try {
+        const { data } = await axios.put(`${baseUrl}/post/comment`,
+        {
+          postid: post.id,
+          comment,
+        });
+        setComment("");
+        fetchPosts();
+      } 
+      catch (error){
+        console.log(error);
+      }
     };
 
     console.log(id)
