@@ -19,7 +19,6 @@ const Home = () => {
   return (
     <>
       <Container maxWidth="lg" display="flex" justifycontent="space-between" >
-        <Navbar></Navbar>
         <Grow in>
           <Container>
             <Grid className="classes.mainContainer" container justifycontent="space-between" alignItems="stretch" spacing={3}>
