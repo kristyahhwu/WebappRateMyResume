@@ -4,16 +4,19 @@ import { Typography, TextField, Button } from "@material-ui/core";
 import { viewPost, fetchPosts, baseUrl } from "../api";
 import { useDispatch} from 'react-redux';
 import Axios from 'axios';
-import axios from "axios";
+
+import './pages.css';
 
 const PostDetail = () => {
     console.log(useParams())
     const { id } = useParams();
+
     const dispatch = useDispatch();
+
     const [post, setPost] = useState([]);
     const [allComments, setAllComments] = useState([]); // return a list of comments
     const [comment, setComment] = useState(""); // single comment
-
+    const [likes, setLikes] = useState(0);
     // Not working with redux: redux.js:275 Uncaught Error: Actions must be plain objects. Instead, the actual type was: 'Promise'.
     // You may need to add middleware to your store setup to handle dispatching other values, such as 'redux-thunk'
     // to handle dispatching functions
@@ -31,6 +34,7 @@ const PostDetail = () => {
               setPost(res.data)
               console.log('URL: /post/view postid:', id)
               console.log("response:", res)
+              getLikes()
             }).catch(error => console.log(error))
       }, []);
 
@@ -38,14 +42,25 @@ const PostDetail = () => {
     const likePost = () => {
         Axios.put(`${baseUrl}/post/like`, {
                 postid: id,
-                userid: '5b9d19ef-67f2-4e53-bd12-2f20eee95230',
+                userid: '5d7c8cb9-b3e8-4b86-8b0b-704fac91d553',
         })
     }
+
+    const getLikes = () => {
+      Axios.get(`${baseUrl}/post/view/like`, {
+        params: {
+          postid: id
+        }
+      })
+      .then(res => {
+        setLikes(res.data)
+      }).catch(error => console.log(error))
+  }
 
     const handleComment = async (e) => {
       e.preventDefault();
       try {
-        const { data } = await axios.put(`${baseUrl}/post/comment`,
+        const { data } = await Axios.put(`${baseUrl}/post/comment`,
         {
           postid: post.id,
           comment,
@@ -61,22 +76,26 @@ const PostDetail = () => {
     console.log(id)
 
     return (
-        <div className="imgDiv">
-            <div> { post.title } </div>
-            <div> { post.description } </div>
-            <img src={ post.resumeUrl } />
-            <div className = "commentSection">
-              {allComments.map((allComments, i) => (
-                <Typography key ={i}>
-                comment{i}
-                </Typography>))}
-                <Typography variant="h6">Write a comment</Typography>
-                <TextField label="comment" value = {comment} onChange = {(e) => setComment(e.target.value)}></TextField>
-
-                <Button disabled={!comment} onClick={handleComment}>comment</Button>
-            </div>
-            <button onClick={ likePost }> Like </button>
+      <div className="postDetailsRootDiv">
+        <div className="postDetailsLeft">
+          <div> { post.title } </div>
+          <div> { likes } </div>
+          <button onClick={ likePost }> Like </button>
+          <div> { post.description } </div>
+          <img className="resume" src={ post.resumeUrl } />
         </div>
+
+        <div className = "commentSection">
+          {allComments.map((allComments, i) => (
+            <Typography key ={i}>
+            comment{i}
+            </Typography>))}
+            <Typography variant="h6">Write a comment</Typography>
+            <TextField label="comment" value = {comment} onChange = {(e) => setComment(e.target.value)}></TextField>
+
+            <Button disabled={!comment} onClick={handleComment}>comment</Button>
+        </div>
+      </div>
     );
 }
 
