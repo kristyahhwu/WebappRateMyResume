@@ -13,9 +13,7 @@ class ViewPostTest {
 //        View a post
 //        Insert a post into the database
         PostDTO newPost = new PostDTO();
-        newPost.postAuthor = "Leiyi Gao";
-        newPost.filePath = "/Users/gaolarry/Downloads/";
-        newPost.fileName = "Leiyi Gao.pdf";
+        newPost.author = "Leiyi Gao";
         newPost.title = "Leiyi Gao's resume";
         newPost.description = "Leiyi Gao's resume description";
 
