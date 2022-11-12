@@ -32,9 +32,8 @@ public class Utilities {
 
     static Gson gson = new Gson();
 
-    static MongoClientURI uri = new MongoClientURI("mongodb://admin:password@localhost:27017/");
     // admin username and password is not setup correctly. Logging in without it
-    static MongoClientURI uri = new MongoClientURI("mongodb://localhost:27017/");//auser:apassword@
+    static MongoClientURI uri = new MongoClientURI("mongodb://localhost:27017/");
     static MongoClient mongoClient = new MongoClient(uri);
     static MongoDatabase db = mongoClient.getDatabase("UsersDatabase");
 
@@ -152,16 +151,15 @@ public class Utilities {
     public static String createPost(String body) {
         PostDTO newPost = gson.fromJson(body, PostDTO.class);
         System.out.println("body received"+ body);
-        ObjectId resumeId = upload(newPost.filePath, newPost.fileName, db);
-        System.out.println("Resume saved in DB with ID: "+ resumeId);
+
         // insert into transactions collection
         try {
             Document doc = new Document("postId", UUID.randomUUID().toString())
                     .append("postDate", LocalDateTime.now())
-                    .append("postAuthor", newPost.postAuthor)
+                    .append("postAuthor", newPost.author)
                     .append("title", newPost.title)
                     .append("description", newPost.description)
-                    .append("resume", resumeId);
+                    .append("resumeUrl", newPost.resumeUrl);
             // insert document into collection
             postsCollection.insertOne(doc);
         }
