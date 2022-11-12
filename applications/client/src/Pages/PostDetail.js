@@ -14,15 +14,9 @@ const PostDetail = () => {
     const dispatch = useDispatch();
 
     const [post, setPost] = useState([]);
-    const [allComments, setAllComments] = useState([]); // return a list of comments
-    const [comment, setComment] = useState(""); // single comment
+    const [allComments, setAllComments] = useState([]);
+    const [comment, setComment] = useState("");
     const [likes, setLikes] = useState(0);
-    // Not working with redux: redux.js:275 Uncaught Error: Actions must be plain objects. Instead, the actual type was: 'Promise'.
-    // You may need to add middleware to your store setup to handle dispatching other values, such as 'redux-thunk'
-    // to handle dispatching functions
-    // useEffect(() => {
-    //     dispatch(fetchPosts());
-    //   }, [dispatch]);
 
     useEffect(() => {
         Axios.get(`${baseUrl}/post/view`, {
