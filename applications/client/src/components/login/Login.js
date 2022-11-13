@@ -1,12 +1,17 @@
 import React from "react";
-import { Form, Container, Row, Col } from "react-bootstrap";
-import styles from "./index.module.css";
 import axios from "axios";
-import { Typography } from "@material-ui/core";
+import { Paper, Container, Button, Grid, Typography, TextField, InputAdornment } from "@material-ui/core";
+
+// The followings are all the imported images/icons
+import useStyles from "../Registration/SignUpStyles";
+import logo from '../../images/black-logo.png'
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import LockIcon from '@mui/icons-material/Lock';
 
 const Login = () => {
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const classes = useStyles();
 
     const handleSubmit = () => {
         console.log(username);
@@ -37,63 +42,70 @@ const Login = () => {
 
 
     return (
-        <div className="container text-center">
-            <Container>
-                <Form className={styles.form}>
-                    <Typography size="h5"> Welcome</Typography>
-                    <Col lg={4}>
-                        <Row>
-                            <div className={styles.formInputComponent}>
-                                <label className={styles.formLabel}>Username:</label>
-                                <input
-                                    className={styles.formInput}
-                                    type="username"
-                                    placeholder="Enter your username"
-                                    value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
-                                />
-                            </div>
-                        </Row>
 
-                        <Row>
-                            <div className={styles.formInputComponent}>
-                                <label className={styles.formLabel}>Password:</label>
-                                <input
-                                    className={styles.formInput}
-                                    type="password"
-                                    name="password"
-                                    placeholder="Enter your password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
-                            </div>
-                        </Row>
-                    </Col>
+        <Container component='main' maxWidth='xs'>
+            <Paper className={classes.paper} elevation={3}>
+                <img className={classes.image} src={logo} alt='images' height="40px" />
+                <Typography variant="h5"><strong> Welcome </strong></Typography>
+                <form className={classes.form} onSubmit={(e) => handleSubmit(e)}>
+                    <div className={classes.form}>
+                        <TextField
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <PersonOutlineOutlinedIcon />
+                                    </InputAdornment>
+                                ),
+                            }}
+                            variant="outlined" size="medium"
+                            className={classes.form}
+                            type="username"
+                            placeholder="Enter your username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </div>
+                    <div className={classes.form}>
+                        <TextField
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <LockIcon />
+                                    </InputAdornment>
+                                ),
+                            }}
+                            variant="outlined" size="medium"
+                            className={classes.form}
+                            type="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
 
+                    <Grid container justifyContent='center'>
+                        <Button className={classes.submit} variant="outlined" size="large" onClick={handleSubmit} type="button">
+                            Log In
+                        </Button>
+                    </Grid>
 
-
-                    <Col>
-                        <Row>
-                            <button className={styles.formInputBtn} onClick={handleSubmit} type="button">
-                                Log In
-                            </button>
-                        </Row>
-                    </Col>
-                    <Col>
-                        <label>Don't have an account? Register <a href="/user/create/">Here</a></label>
-                    </Col>
-                </Form>
-            </Container>
-
+                    <Grid container justifyContent='center'>
+                        Don't have an account? Register <a href="/user/create/"> <strong>  Here </strong></a>
+                    </Grid>
+                </form>
+            </Paper>
             {/* <Button variant="outlined" size="large" color="primary">
                 Login
             </Button>
             <Button variant="contained" size="large" color="primary">
                 Sign Up
             </Button> */}
-        </div >
-    )
+        </Container>
 
-}
+
+    );
+
+};
 
 export default Login;

@@ -83,7 +83,7 @@ const FormSignup = () => {
         <Container component='main' maxWidth='xs'>
             <Paper className={classes.paper} elevation={3}>
                 <img className={classes.image} src={logo} alt='images' height="40px" />
-                <Typography variant="h5"><strong> Welcome</strong></Typography>
+                <Typography variant="h5"><strong> Register Here </strong></Typography>
                 <form className={classes.form} onSubmit={(e) => handleSubmit(e)}>
                     <div className={classes.form}>
                         <TextField
@@ -94,7 +94,7 @@ const FormSignup = () => {
                                     </InputAdornment>
                                 ),
                             }}
-                            variant="outlined" size="small"
+                            variant="outlined" size="medium"
                             className={classes.form}
                             type="text"
                             name="username"
@@ -113,7 +113,7 @@ const FormSignup = () => {
                                     </InputAdornment>
                                 ),
                             }}
-                            variant="outlined" size="small"
+                            variant="outlined" size="medium"
                             className={classes.form}
                             type="email"
                             name="email"
@@ -123,7 +123,7 @@ const FormSignup = () => {
                         />
                     </div>
 
-                    <div className={classes.forms}>
+                    <div className={classes}>
                         <TextField
                             InputProps={{
                                 startAdornment: (
@@ -132,7 +132,7 @@ const FormSignup = () => {
                                     </InputAdornment>
                                 ),
                             }}
-                            variant="outlined" size="small"
+                            variant="outlined" size="medium"
                             className={classes.form}
                             type={passwordShown ? "text" : "password"}
                             name="password"
@@ -152,7 +152,7 @@ const FormSignup = () => {
                         <Button className={classes.optionBtn} onClick={ShowPassword} >Show Password</Button>
                         <p>* - mandatory fields</p>
                         <Grid container justifyContent='center'>
-                            <Button className={classes.submit} variant="outlined" onClick={handleSubmit} type="Button">
+                            <Button className={classes.submit} variant="outlined" size="large" onClick={handleSubmit} type="Button">
                                 Register
                             </Button>
                         </Grid>
