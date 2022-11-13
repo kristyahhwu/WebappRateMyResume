@@ -28,10 +28,11 @@ export default makeStyles((theme) => ({
     paddingLeft: '20px',
     paddingRight: '20px',
     height: '65px',
+    width: "70%",
     backgroundColor: '#f5f5f5',
     borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
   },
-  [theme.breakpoints.down('sm')] : {
+  [theme.breakpoints.down('sm')]: {
     mainContainer: {
       flexDirection: "column-reverse"
     }

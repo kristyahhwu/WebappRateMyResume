@@ -5,11 +5,8 @@ import { useDispatch } from 'react-redux';
 import { getPosts } from '../actions/posts'
 import Posts from '../components/Posts/Posts'
 import Form from '../components/Form/Form'
-import Navbar from '../components/Navbar/Navbar';
-import useStyles from './styles';
 
 const Home = () => {
-  const classes = useStyles();
   const dispatch = useDispatch();
 
   useEffect(() => {

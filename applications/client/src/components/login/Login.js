@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import styles from "./index.module.css";
 import axios from "axios";
+import { Typography } from "@material-ui/core";
 
 const Login = () => {
     const [username, setUsername] = React.useState("");
@@ -39,7 +40,7 @@ const Login = () => {
         <div className="container text-center">
             <Container>
                 <Form className={styles.form}>
-                    <div> Register Your Account Here</div>
+                    <Typography size="h5"> Welcome</Typography>
                     <Col lg={4}>
                         <Row>
                             <div className={styles.formInputComponent}>

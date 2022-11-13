@@ -7,7 +7,7 @@
   justify-content: space-between;
   height: 100%;
   border-radius: 1rem;
-  background-color: #e7f1eb !important;
+  background-color: #ffffff !important;
 }
 
 .title {
@@ -36,7 +36,7 @@
   margin-top: 1rem !important;
   margin-bottom: 1rem;
   border-radius: 5px;
-  color: white;
+  color: #ffffff;
   border: none !important;
   background: linear-gradient(rgb(103, 217, 133) 0%, rgb(5, 82, 19) 100%);
 }
