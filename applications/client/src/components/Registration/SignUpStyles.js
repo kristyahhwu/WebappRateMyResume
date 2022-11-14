@@ -30,6 +30,9 @@ export default makeStyles((theme) => ({
         marginTop: '-20px',
     },
     googleButton: {
-        marginBottom: theme.spacing(2),
+        margin: theme.spacing(1, 1, 0),
+        alignItems: 'center',
+        display: 'flex',
+        flexDirection: 'column',
     },
 }));

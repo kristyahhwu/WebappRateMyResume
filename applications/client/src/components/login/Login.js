@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { Paper, Container, Button, Grid, Typography, TextField, InputAdornment } from "@material-ui/core";
+import jwt_decode from 'jwt-decode';
 
 // The followings are all the imported images/icons
 import useStyles from "../Registration/SignUpStyles";
@@ -11,24 +12,31 @@ import LockIcon from '@mui/icons-material/Lock';
 const Login = () => {
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const [user, setUser] = React.useState({}); // TODO: use redux toolkit to manage instead of state
     const classes = useStyles();
 
-    function handleResponse(response) {
-        console.log("Encoded JWT ID token: " + response.credential); // grab JWT token, need to decode
+    // google login auth logic
+    function handleCallbackResponse(response) {
+        console.log("Encoded JWT ID token: " + response.credential); // grab JWT token
+        let userObject = jwt_decode(response.credential); //decode and get object info
+        console.log(userObject);
+        setUser(userObject);
+        document.getElementById("googleLoginBtn").hidden = true; // hide google login after its logged in
     }
 
     useEffect(() => {
         /* global google */
         google.accounts.id.initialize({
             client_id: "654864362395-75apagrj9har8nqh77pnm1s72064k46h.apps.googleusercontent.com",
-            callback: handleResponse
+            callback: handleCallbackResponse
         });
 
         google.accounts.id.renderButton(
             document.getElementById("googleLoginBtn"),
-            { theme: "outline", size: "large" }
+            { theme: "outline", size: "large", width: "175", justifyContent: "center" }
         )
     }, []);
+
 
     const handleSubmit = () => {
         console.log(username);
@@ -105,10 +113,25 @@ const Login = () => {
                         <Button className={classes.submit} variant="outlined" size="large" onClick={handleSubmit} type="button">
                             Log In
                         </Button>
-
-                        <div id='googleLoginBtn'></div>
                     </Grid>
 
+                    <div className={classes.googleButton} id='googleLoginBtn'></div>
+
+
+
+
+                    {/*
+                    TODO: fix login function and navbar button after being signed in
+                     <div>
+                       
+                        {user &&
+                            <div>
+                                <h4>{user.name}</h4>
+                            </div>
+
+
+                        }
+                    </div> */}
                     <Grid container justifyContent='center'>
                         Don't have an account? Register <a href="/user/create/"> <strong>  Here </strong></a>
                     </Grid>
