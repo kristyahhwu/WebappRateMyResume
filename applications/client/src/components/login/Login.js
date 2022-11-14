@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { Paper, Container, Button, Grid, Typography, TextField, InputAdornment } from "@material-ui/core";
 
@@ -12,6 +12,23 @@ const Login = () => {
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
     const classes = useStyles();
+
+    function handleResponse(response) {
+        console.log("Encoded JWT ID token: " + response.credential); // grab JWT token, need to decode
+    }
+
+    useEffect(() => {
+        /* global google */
+        google.accounts.id.initialize({
+            client_id: "654864362395-75apagrj9har8nqh77pnm1s72064k46h.apps.googleusercontent.com",
+            callback: handleResponse
+        });
+
+        google.accounts.id.renderButton(
+            document.getElementById("googleLoginBtn"),
+            { theme: "outline", size: "large" }
+        )
+    }, []);
 
     const handleSubmit = () => {
         console.log(username);
@@ -88,11 +105,14 @@ const Login = () => {
                         <Button className={classes.submit} variant="outlined" size="large" onClick={handleSubmit} type="button">
                             Log In
                         </Button>
+
+                        <div id='googleLoginBtn'></div>
                     </Grid>
 
                     <Grid container justifyContent='center'>
                         Don't have an account? Register <a href="/user/create/"> <strong>  Here </strong></a>
                     </Grid>
+
                 </form>
             </Paper>
             {/* <Button variant="outlined" size="large" color="primary">
