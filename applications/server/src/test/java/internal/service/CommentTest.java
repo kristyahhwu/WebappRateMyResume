@@ -48,6 +48,7 @@ public class CommentTest {
         Assert.assertTrue(foundComment);
         //Delete the post and the comment from the database
         Utilities.deletePost(newPostID);
+        Utilities.deleteComment(newCommentID);
     }
 
     private boolean findComment(String newCommentID, List<HandleCommentDTO> allCommentsForPost) {
