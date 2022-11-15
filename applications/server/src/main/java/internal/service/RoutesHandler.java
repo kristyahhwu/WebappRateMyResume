@@ -5,8 +5,8 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-
 import org.bson.Document;
+
 import static internal.service.Utilities.*;
 
 
@@ -15,9 +15,7 @@ public class RoutesHandler {
 
     Gson gson = new Gson();
 
-//    MongoClientURI uri = new MongoClientURI("mongodb://admin:password@localhost:27017/");
-    // admin username and password is not setup correctly. Logging in without it
-    MongoClientURI uri = new MongoClientURI("mongodb://localhost:27017/");//auser:apassword@
+    MongoClientURI uri = new MongoClientURI("mongodb://localhost:27017/");
     MongoClient mongoClient = new MongoClient(uri);
     MongoDatabase db = mongoClient.getDatabase("UsersDatabase");
 

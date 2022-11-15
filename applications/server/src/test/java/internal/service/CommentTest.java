@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import internal.dataAccess.DTO.HandleCommentDTO;
 import internal.dataAccess.DTO.PostDTO;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -20,11 +19,9 @@ public class CommentTest {
     void comment() {
         //Insert a post into the database
         PostDTO newPost = new PostDTO();
-        newPost.postAuthor = "Leiyi Gao";
+        newPost.author = "Leiyi Gao";
         newPost.title = "Leiyi Gao's resume";
         newPost.description = "Leiyi Gao's resume description";
-        newPost.filePath = "/Users/gaolarry/Downloads";
-        newPost.fileName = "Leiyi Gao.pdf";
 
 
         //  Call handleViewPost with the post ID
@@ -45,7 +42,7 @@ public class CommentTest {
         List<HandleCommentDTO> allCommentsForPost =
                 gson.fromJson(commentsResponse, new TypeToken<List<HandleCommentDTO>>(){}.getType());
         boolean foundComment = findComment(newCommentID, allCommentsForPost);
-        Assert.assertTrue(foundComment);
+        assertTrue(foundComment);
         //Delete the post and the comment from the database
         Utilities.deletePost(newPostID);
         Utilities.deleteComment(newCommentID);
