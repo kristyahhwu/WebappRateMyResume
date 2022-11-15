@@ -80,8 +80,7 @@ public class RoutesHandler {
     });
 
     public spark.Route handleComment = ((request, response) -> {
-        // will have postid, user (the whole class object, not just id),
-        // comment, time as request body.
+        System.out.printf("Receive comment: \n" + request.body());
         String body = request.body();
         return comment(body);
     });
