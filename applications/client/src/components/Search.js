@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import SearchBar from "material-ui-search-bar";
 
 // TODO: search bar function only works with <form> now
+// https://www.youtube.com/watch?v=8tZtm-znc9A video on Redux Toolkit filter
 
 const Search = () => {
   const [postList, setPostList] = useState([]);

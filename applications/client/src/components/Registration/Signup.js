@@ -1,10 +1,17 @@
 import React from "react";
-import { Row, Col, Container } from "react-bootstrap";
+import { Paper, Container, Button, Grid, Typography, TextField, InputAdornment, Box } from "@material-ui/core";
 import axios from "axios";
 
 import validate from "./validate";
-import styles from "./Signup.module.css";
+import useStyles from "./SignUpStyles";
 import { baseUrl } from "../../api";
+
+// The followings are all the imported images/icons
+import logo from '../../images/black-logo.png'
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import LockIcon from '@mui/icons-material/Lock';
+
 
 const FormSignup = () => {
     const [username, setUsername] = React.useState("");
@@ -12,6 +19,7 @@ const FormSignup = () => {
     const [email, setSemail] = React.useState("");
     const [passwordShown, setPasswordShown] = React.useState(false); // dont show password at first
     const [passwordReqShow, setPasswordReqShow] = React.useState(false);
+    const classes = useStyles();
 
     let errors = {
 
@@ -72,94 +80,89 @@ const FormSignup = () => {
     };
 
     return (
-        <Container>
-            <div className={styles.registerComponent}>
-                <Row>
-                    <Col lg={7}>
-                        <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
-                            <Row>
-                                <div className={styles.formInputs}>
-                                    <label className={styles.formLabel}>Username:</label>
-                                    <input
-                                        className={styles.formInput}
-                                        type="text"
-                                        name="username"
-                                        placeholder="Enter your first name"
-                                        value={username}
-                                        onChange={(e) => setUsername(e.target.value)}
-                                    />
-                                </div>
-                            </Row>
+        <Container component='main' maxWidth='xs'>
+            <Paper className={classes.paper} elevation={3}>
+                <img className={classes.image} src={logo} alt='images' height="40px" />
+                <Typography variant="h5"><strong> Register Here </strong></Typography>
+                <form className={classes.form} onSubmit={(e) => handleSubmit(e)}>
+                    <div className={classes.form}>
+                        <TextField
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <PersonOutlineOutlinedIcon />
+                                    </InputAdornment>
+                                ),
+                            }}
+                            variant="outlined" size="medium"
+                            className={classes.form}
+                            type="text"
+                            name="username"
+                            placeholder="* Enter your username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </div>
 
-                            <Row>
-                                <div className={styles.formInputs}>
-                                    <label className={styles.formLabel}>Email*:</label>
-                                    <input
-                                        className={styles.formInput}
-                                        type="email"
-                                        name="email"
-                                        placeholder="Enter your email"
-                                        value={email}
-                                        onChange={(e) => setSemail(e.target.value)}
-                                    />
-                                </div>
-                            </Row>
+                    <div className={classes.form}>
+                        <TextField
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <EmailOutlinedIcon />
+                                    </InputAdornment>
+                                ),
+                            }}
+                            variant="outlined" size="medium"
+                            className={classes.form}
+                            type="email"
+                            name="email"
+                            placeholder="* Enter your email"
+                            value={email}
+                            onChange={(e) => setSemail(e.target.value)}
+                        />
+                    </div>
 
-                            <Row>
-                                <div className={styles.formInputs}>
-                                    <label className={styles.formLabel}>Password*:</label>
-                                    <input
-                                        className={styles.formInput}
-                                        type={passwordShown ? "text" : "password"}
-                                        name="password"
-                                        placeholder="Enter your password"
-                                        value={password}
-                                        onFocus={handlePasswordInputFocus}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                    />
-                                </div>
+                    <div className={classes}>
+                        <TextField
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <LockIcon />
+                                    </InputAdornment>
+                                ),
+                            }}
+                            variant="outlined" size="medium"
+                            className={classes.form}
+                            type={passwordShown ? "text" : "password"}
+                            name="password"
+                            placeholder="* Enter your password"
+                            value={password}
+                            onFocus={handlePasswordInputFocus}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
 
-                                {passwordReqShow ? <div style={{ maginTop: "1rem", marginBottom: "1rem", color: "red" }}><Row><div>Password Requirements:</div></Row>
-                                    <Row><div>at least 8 characters</div></Row>
-                                    <Row><div>at least 1 digit</div></Row>
-                                </div> : null}
-                            </Row>
+                    {passwordReqShow ? <div style={{ marginBottom: "0.5rem", color: "red" }}>
+                        <div>Password Requirements:</div>
+                        <div>**At least 8 characters && At least 1 digit**</div>
+                    </div> : null}
 
-                            <Row>
-                                <button className={styles.showPasswordBtn} onClick={ShowPassword} >Show Password</button>
-                            </Row>
-
-                            <Col lg={8}>
-                                <Row>
-                                    <Col>
-                                        <p>* - mandatory fields</p>
-                                    </Col>
-                                </Row>
-                            </Col>
-                            <Row></Row>
-
-                            <Row>
-                                <Col></Col>
-                                <Col>
-                                    <button className={styles.formInputBtn} onClick={handleSubmit} type="button">
-                                        Register
-                                    </button>
-                                </Col>
-
-                                <Col></Col>
-                            </Row>
-
-                            <Row>
-                                <span className={styles.formInputLogin}>
-                                    Already have an account? <a href="/user/login">Login</a>
-                                </span>
-                            </Row>
-                        </form>
-                    </Col>
-                    <Col></Col>
-                </Row>
-            </div>
-        </Container>
+                    <Box>
+                        <Button className={classes.optionBtn} onClick={ShowPassword} >Show Password</Button>
+                        <p>* - mandatory fields</p>
+                        <Grid container justifyContent='center'>
+                            <Button className={classes.submit} variant="outlined" size="large" onClick={handleSubmit} type="Button">
+                                Register
+                            </Button>
+                        </Grid>
+                        <Grid container justifyContent='center'>
+                            Already have an account? <a href="/user/login"><strong>Login</strong></a>
+                        </Grid>
+                    </Box>
+                </form>
+            </Paper>
+        </Container >
     );
 };
 
