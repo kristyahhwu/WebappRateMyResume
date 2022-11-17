@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UtilitiesTest {
+public class GetCommentsTest {
     Gson gson = new Gson();
 
     @Test
