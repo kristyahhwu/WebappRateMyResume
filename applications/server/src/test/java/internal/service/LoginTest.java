@@ -17,13 +17,16 @@ class LoginTest{
         newUser.password = "password123";
         newUser.email = "email@email.email";
         String user = Utilities.createUser(gson.toJson(newUser));
-        assertEquals("User created", user);
+//        assertEquals("User created", user);
         UserLoginDTO newLogin = new UserLoginDTO();
         newLogin.username = "john123";
         newLogin.password = "password123";
-        String loginResponse = internal.service.Utilities.login(gson.toJson(newLogin));
-        assertNotEquals(gson.toJson(new UserLoginResponseDTO(false, "Invalid password")), loginResponse);
-        assertNotEquals(gson.toJson(new UserLoginResponseDTO(false, "User not found")), loginResponse);
+        String loginResponse = Utilities.login(gson.toJson(newLogin));
+        UserLoginResponseDTO response = gson.fromJson(loginResponse, UserLoginResponseDTO.class);
+        assertNotEquals(gson.toJson(new UserLoginResponseDTO(false, "Invalid password")), response);
+        assertNotEquals(gson.toJson(new UserLoginResponseDTO(false, "User not found")), response);
         assertEquals(gson.toJson(new UserLoginResponseDTO(true, null)), loginResponse);
+        Utilities.deleteUser(user);
+        assertEquals(gson.toJson(new UserLoginResponseDTO(false, "User not found")), Utilities.login(gson.toJson(newLogin)));
     }
 }
