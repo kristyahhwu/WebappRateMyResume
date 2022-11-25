@@ -589,7 +589,10 @@ public class Utilities {
             System.err.println("Unable to delete due to an error: " + me);
         }
     }
-
+    /**
+     * Deletes a user by ID
+     * @param userId id of comment to delete
+     */
     public static void deleteUser(String userId){
         System.out.println("User id toDelete: " + userId);
         Bson query = eq("userId", userId);
