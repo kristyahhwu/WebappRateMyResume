@@ -118,6 +118,11 @@ public class Utilities {
         return fileId;
     }
 
+    /**
+     * Extract values from the String in an expected format
+     * @param time  String containing the year-month-date-hour-minute
+     * @return LocalDateTime object created from the given time parameter
+     */
     public static LocalDateTime extractTime(String time) {
         // expect the time format to be year-month-date-hour-minute
         String[] parts = time.split("-");
@@ -131,6 +136,12 @@ public class Utilities {
         return currentTime;
     }
 
+    /**
+     * Converts the PDF file to a byte array
+     * @param path Location of the resume file
+     * @return byte array from the file read in
+     * @throws FileNotFoundException
+     */
     public static byte[] convertPDFToByteArray(String path) throws FileNotFoundException {
         File file = new File(path);
         FileInputStream fis = new FileInputStream(file);
@@ -150,6 +161,12 @@ public class Utilities {
         return data;
     }
 
+    /**
+     * Recieves the byte array and writes it to database as an image
+     * @param data byte array
+     * @param filename the file name to read in
+     * @throws IOException
+     */
     public static void convertByteArrayToImage(byte[] data, String filename) throws IOException {
         PDDocument document = PDDocument.load(data);
         PDFRenderer pdfRenderer = new PDFRenderer(document);
@@ -160,22 +177,11 @@ public class Utilities {
         document.close();
     }
 
-    public static void generateImages(String path) {
-        byte[] byteArray = null;
-        String filename = new File(path).getName();
-        try {
-            byteArray = convertPDFToByteArray(path);
-        } catch (FileNotFoundException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        try {
-            convertByteArrayToImage(byteArray, filename);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
+    /**
+     * Handler method that creates a new Post  from the HTTP request bydy string and saves it in DB
+     * @param body JSON string for Post
+     * @return the new Post ID
+     */
     public static String createPost(String body) {
         PostDTO newPost = gson.fromJson(body, PostDTO.class);
         System.out.println("body received"+ body);
@@ -198,6 +204,10 @@ public class Utilities {
         return newPostID;
     }
 
+    /**
+     * Pushes in sample Post records into Database
+     * @return confirmation message of operation
+     */
     public static String initializeDemo() {
         List<List<String>> posts = new ArrayList<>();
         posts.add(List.of(LocalDateTime.now().toString(), "fresh grad looking for FTE roles",
@@ -226,6 +236,11 @@ public class Utilities {
         return "Initialized demo posts";
     }
 
+    /**
+     * Searches for a post by title
+     * @param searchKeyword The title of Post to search for
+     * @return JSON string of found Post or Post Not found
+     */
     public static String search(String searchKeyword) {
         Gson gson = new Gson();
 
@@ -255,6 +270,10 @@ public class Utilities {
         }
     }
 
+    /**
+     * Fetches all the Post records from DB
+     * @return JSON string of all Posts
+     */
     public static String getAll() {
         List<Document> posts = new ArrayList<>();
         try {
@@ -271,6 +290,11 @@ public class Utilities {
         return gson.toJson(posts);
     }
 
+    /**
+     * Searches s for a Post object by its id
+     * @param postid id of Post to view
+     * @return JSON string of found Post or Post not found
+     */
     public static String viewPost(String postid) {
         Gson gson = new Gson();
 
@@ -293,6 +317,11 @@ public class Utilities {
         }
     }
 
+    /**
+     * Posts a like on a given Post
+     * @param body JSON string containing user id and post id
+     * @return id of the PostLike record
+     */
     public static String like(String body) {
         System.out.println("/post/like" + body.toString());
 
@@ -366,6 +395,11 @@ public class Utilities {
         return newLIkeID;
     }
 
+    /**
+     * Counts the number of likes that have been posted for a given Post
+     * @param postID id of the Post
+     * @return int number of likes
+     */
     public static int countNumberOfLikesForPost(String postID){
         ArrayList<Document> likeResult = null;
         try {
@@ -378,6 +412,11 @@ public class Utilities {
         return likeResult.size();
     }
 
+    /**
+     * Posts a comment for a given Post
+     * @param body String containing comment info and post id
+     * @return id of saved comment
+     */
     public static String comment(String body) {
         HandleCommentDTO newComment = new HandleCommentDTO();
         try {
@@ -436,6 +475,11 @@ public class Utilities {
 
     }
 
+    /**
+     * Authenticates using username and password
+     * @param body JSON string containing username and password
+     * @return JSON string of found user or error message
+     */
     public static String login(String body) {
         UserLoginDTO loginDto = gson.fromJson(body, UserLoginDTO.class);
         System.out.println("body received"+ body);
@@ -454,12 +498,20 @@ public class Utilities {
         }
     }
 
+    /**
+     * Returns a logout confirmation string
+     * @return
+     */
     public static String logout() {
         // remove session from user if exist
         return gson.toJson(new UserLoginResponseDTO(false, "User logged out"));
     }
 
-
+    /**
+     * Counts the number of likes that have been posted for a given Post
+     * @param postId id of the Post
+     * @return String number of likes in a formatted String
+     */
     public static String numberOfLikes(String postId) {
         List<Document> likeResult = null;
         try {
@@ -473,6 +525,11 @@ public class Utilities {
         return "Number of likes: " + (likeResult == null ? 0 : likeResult.size());
     }
 
+    /**
+     * Fetches list of comments for a given Post
+     * @param postId id of Post
+     * @return JSON string of comments list
+     */
     public static String getCommentsForPost(String postId) {
 
         List<Document> comments = null;
@@ -488,6 +545,10 @@ public class Utilities {
         return gson.toJson(comments);
     }
 
+    /**
+     * Deletes a post by id
+     * @param newPostID id of post to delete
+     */
     public static void deletePost(String newPostID) {
         System.out.println("Post id toDelete: " + newPostID);
         Bson query = eq("postId", newPostID);
@@ -499,6 +560,10 @@ public class Utilities {
         }
     }
 
+    /**
+     * Deletes a Like by ID
+     * @param newLikeID The id of Like to delete
+     */
     public static void deleteLike(String newLikeID) {
         System.out.println("Like id toDelete: " + newLikeID);
         Bson query = eq("id", newLikeID);
@@ -510,6 +575,10 @@ public class Utilities {
         }
     }
 
+    /**
+     * Deletes a comment by ID
+     * @param newCommentID id of comment to delete
+     */
     public static void deleteComment(String newCommentID) {
         System.out.println("Comment id toDelete: " + newCommentID);
         Bson query = eq("id", newCommentID);
