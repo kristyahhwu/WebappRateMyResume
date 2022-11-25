@@ -63,7 +63,7 @@ public class Utilities {
                 .append("email", newUser.email);
         // insert document into collection
         applicantsCollection.insertOne(doc);
-        return "User created";
+        return newUser.userId;
     }
 
     public static byte[] LoadImage(String filePath) throws Exception {
@@ -494,6 +494,17 @@ public class Utilities {
         Bson query = eq("id", newCommentID);
         try {
             DeleteResult result = postCommentsCollection.deleteOne(query);
+            System.out.println("Deleted document count: " + result.getDeletedCount());
+        } catch (MongoException me) {
+            System.err.println("Unable to delete due to an error: " + me);
+        }
+    }
+
+    public static void deleteUser(String userId){
+        System.out.println("User id toDelete: " + userId);
+        Bson query = eq("userId", userId);
+        try {
+            DeleteResult result = applicantsCollection.deleteOne(query);
             System.out.println("Deleted document count: " + result.getDeletedCount());
         } catch (MongoException me) {
             System.err.println("Unable to delete due to an error: " + me);
