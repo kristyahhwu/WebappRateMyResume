@@ -27,7 +27,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
 
 import static com.mongodb.client.model.Filters.and;
@@ -358,9 +357,9 @@ public class Utilities {
     }
 
     public static String comment(String body) {
-        CommentDTO newComment = new CommentDTO();
+        HandleCommentDTO newComment = new HandleCommentDTO();
         try {
-            newComment = gson.fromJson(body, CommentDTO.class);
+            newComment = gson.fromJson(body, HandleCommentDTO.class);
             // Add short timestamp to the comment
             LocalDateTime UnformattedTime = LocalDateTime.now();
             DateTimeFormatter shortTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
