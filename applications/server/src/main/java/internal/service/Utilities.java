@@ -32,6 +32,9 @@ import java.util.UUID;
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 
+/**
+ * Backend class
+ */
 public class Utilities {
 
     static Gson gson = new Gson();
@@ -46,6 +49,11 @@ public class Utilities {
     static MongoCollection<Document> postLikesCollection = db.getCollection("postLikesCollection");
     static MongoCollection<Document> postCommentsCollection = db.getCollection("postCommentsCollection");
 
+    /**
+     * Method that creates a user from JSON string given
+     * @param body JSON text containing the user's details
+     * @return response indicating success or error
+     */
     public static String createUser(String body){
         UserDTO newUser = new UserDTO();
         try {
@@ -53,6 +61,7 @@ public class Utilities {
             newUser.userId = UUID.randomUUID().toString();
         }catch(Exception e){
             e.printStackTrace();
+            return e.getMessage();
         }
         // insert into user collection
         Document doc = new Document("userId", newUser.userId)
@@ -65,6 +74,12 @@ public class Utilities {
         return newUser.userId;
     }
 
+    /**
+     * Method that reads in the file contents in form of bytes
+     * @param filePath Location of file
+     * @return byte array of the file read in
+     * @throws Exception
+     */
     public static byte[] LoadImage(String filePath) throws Exception {
         File file = new File(filePath);
         int size = (int) file.length();
@@ -75,6 +90,13 @@ public class Utilities {
         return buffer;
     }
 
+    /**
+     * Uploads the file located at the filePath and fileName given
+     * @param filePath The location of the file
+     * @param fileName Acual file name
+     * @param imgDb Mongo database reference object
+     * @return Stored file's object id in MongoDB
+     */
     public static ObjectId upload(String filePath, String fileName, MongoDatabase imgDb) {
         ObjectId fileId = null;
         try {
