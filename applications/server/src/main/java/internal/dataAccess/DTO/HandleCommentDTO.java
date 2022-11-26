@@ -1,6 +1,6 @@
 package internal.dataAccess.DTO;
 
-public class CommentDTO {
+public class HandleCommentDTO {
     // will have postid, user (the whole class object, not just id),
     // comment, time as request body.
     public String postid;
@@ -11,10 +11,10 @@ public class CommentDTO {
     public String time;
     public String id;
 
-    public CommentDTO() {
+    public HandleCommentDTO() {
     }
 
-    public CommentDTO(String postid, String userId, String username, String email, String comment, String time) {
+    public HandleCommentDTO(String postid, String userId, String username, String email, String comment, String time) {
         this.postid = postid;
         this.userid = userId;
         this.username = username;
