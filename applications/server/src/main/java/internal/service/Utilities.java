@@ -327,11 +327,13 @@ public class Utilities {
 
         HandleLikeDTO newLike = new HandleLikeDTO();
         try {
-            newLike = gson.fromJson(body, HandleLikeDTO.class);// converting the JSON String into a Java object (our DTO
+            newLike = gson.fromJson(body, HandleLikeDTO.class);
+            if (newLike.userid == "") {
+                newLike.userid = "0000";
+            }
         }catch(Exception e){
             e.printStackTrace();
         }
-        //will have postid, userid in the request body
 
         // validate the userid
         Document regQuery1 = new Document()
@@ -383,7 +385,7 @@ public class Utilities {
             System.out.println(e.getMessage());
         }
         if(likeResult != null){
-            return "Error: Post already liked";
+            // return "Error: Post already liked";
         }
         // insert into postLike collection
         String newLIkeID = UUID.randomUUID().toString();
@@ -421,6 +423,9 @@ public class Utilities {
         HandleCommentDTO newComment = new HandleCommentDTO();
         try {
             newComment = gson.fromJson(body, HandleCommentDTO.class);
+            if (newComment.userid == "") {
+                newComment.userid = "0000";
+            }
             // Add short timestamp to the comment
             LocalDateTime UnformattedTime = LocalDateTime.now();
             DateTimeFormatter shortTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
