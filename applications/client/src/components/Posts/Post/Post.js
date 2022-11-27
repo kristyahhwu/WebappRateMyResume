@@ -26,13 +26,11 @@ const Post = ({ post }) => {
                 <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
             </div>
             <div className={classes.overlay2}>
-                <Button color="white" size="small" onClick={() => {}}>
-                    <MoreHorizIcon fontSize="default" />
+                <Button color="white" size="small" onClick={() => { }}>
+                    <MoreHorizIcon fontSize="medium" />
                 </Button>
             </div>
-            {/* <div className={classes.details}>
-                <Typography variant="body2" color="textSecondary">{post.tags.map((tag) => `#${tag} `)}</Typography>
-            </div> */}
+
             <Typography className={classes.title} variant="h5" gutterBottom><Link to={`/post/${post.postId}`}>{post.title}</Link> </Typography>
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">{post.message}</Typography>
@@ -43,10 +41,6 @@ const Post = ({ post }) => {
                     &nbsp; Like &nbsp;
                     {post.likeCount}
                 </Button>
-                {/* <Button size="small" color="primary" onClick={() => {}}>
-                    <DeleteIcon fontSize="small" />
-                    Delete
-                </Button> */}
             </CardActions>
         </Card>
     );

@@ -1,10 +1,11 @@
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
     appBar: {
         borderRadius: 15,
-        margin: '30px 0',
+        width: '70vw',
+        marginTop: '2vw',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -14,12 +15,6 @@ export default makeStyles((theme) => ({
             flexDirection: 'column',
         },
     },
-    heading: {
-        color: theme.palette.primary.main,
-        textDecoration: 'none',
-        fontSize: '2em',
-        fontWeight: 300,
-    },
     image: {
         marginLeft: '10px',
         marginTop: '5px',
@@ -27,10 +22,27 @@ export default makeStyles((theme) => ({
     toolbar: {
         display: 'flex',
         justifyContent: 'flex-end',
-        width: '400px',
+        width: '100%',
         [theme.breakpoints.down('sm')]: {
             width: 'auto',
         },
+    },
+    Search: {
+        position: "absolute",
+        width: '400px',
+    },
+    submitButton: {
+        borderRadius: 5,
+        display: "flex",
+        gap: "15px",
+        color: "#ffffff",
+        backgroundColor: "#38C6BD",
+        fontSize: "15px",
+        fontWeight: "200",
+        marginBottom: "5px",
+        marginTop: "5px",
+        contrastText: "#FFFFFF",
+        marginLeft: '10px',
     },
     profile: {
         display: 'flex',
@@ -42,9 +54,6 @@ export default makeStyles((theme) => ({
             marginTop: 20,
             justifyContent: 'center',
         },
-    },
-    logout: {
-        marginLeft: '20px',
     },
     userName: {
         display: 'flex',
@@ -59,18 +68,5 @@ export default makeStyles((theme) => ({
         color: theme.palette.getContrastText(deepPurple[500]),
         backgroundColor: deepPurple[500],
     },
-    search: {
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: alpha(theme.palette.common.white, 0.15),
-        '&:hover': {
-            backgroundColor: alpha(theme.palette.common.white, 0.25),
-        },
-        marginLeft: 0,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(1),
-            width: 'auto',
-        },
-    },
+
 }));

@@ -1,4 +1,3 @@
-import './App.css';
 import React, { useEffect } from 'react';
 import { Container, AppBar, Typography, Grow, Grid, Box } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
@@ -6,11 +5,8 @@ import { useDispatch } from 'react-redux';
 import { getPosts } from '../actions/posts'
 import Posts from '../components/Posts/Posts'
 import Form from '../components/Form/Form'
-import Navbar from '../components/Navbar/Navbar';
-import useStyles from './styles';
 
 const Home = () => {
-  const classes = useStyles();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,7 +16,6 @@ const Home = () => {
   return (
     <>
       <Container maxWidth="lg" display="flex" justifycontent="space-between" >
-        <Navbar></Navbar>
         <Grow in>
           <Container>
             <Grid className="classes.mainContainer" container justifycontent="space-between" alignItems="stretch" spacing={3}>
