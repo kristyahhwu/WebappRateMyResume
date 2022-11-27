@@ -1,5 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
+/**
+ * stylesheet for Posts.js
+ */
+
 export default makeStyles((theme) => ({
   mainContainer: {
     display: 'flex',

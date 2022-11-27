@@ -1,3 +1,9 @@
+/**
+ * function to validate if user inputs are valid
+ * @param {string} values input value
+ * @returns error message if any
+ */
+
 const validate = (values) => {
     let errors = {
         username: [],

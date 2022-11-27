@@ -8,6 +8,12 @@ import SearchBar from "material-ui-search-bar";
 // TODO: search bar function only works with <form> now
 // https://www.youtube.com/watch?v=8tZtm-znc9A video on Redux Toolkit filter
 
+/**
+ * function to filter posts using keyword
+ * @param keyword anyword match in the description
+ * @returns a lists of posts with input keyword
+ */
+
 const Search = () => {
   const [postList, setPostList] = useState([]);
 

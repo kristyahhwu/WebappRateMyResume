@@ -1,5 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
+/**
+ * stylesheet for Post.js
+ */
+
 export default makeStyles({
   media: {
     height: 0,

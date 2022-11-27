@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Typography, TextField, Button } from "@material-ui/core";
-import { viewPost, fetchPosts, baseUrl } from "../api";
-import { useDispatch } from 'react-redux';
+import { fetchPosts, baseUrl } from "../api";
+//import { useDispatch } from 'react-redux';
 import Axios from 'axios';
 
 import './pages.css';
@@ -10,7 +10,7 @@ import './pages.css';
 const PostDetail = () => {
   const { id: currentPostId } = useParams();
 
-  const dispatch = useDispatch();
+  //	const dispatch = useDispatch();
 
   const [post, setPost] = useState([]);
   const [allComments, setAllComments] = useState([]);
@@ -72,7 +72,7 @@ const PostDetail = () => {
           userid: currentUserId,
           username: currentUsername,
           comment: comment,
-        });
+        })
       setComment("");
       fetchPosts();
     }
