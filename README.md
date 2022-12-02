@@ -3,7 +3,7 @@
 ## Application URL: http://34.94.190.11:3000
 
 
-## Team member
+## Team Members
 
 | Student Name | Student Email | GitHub Username | Student's Role |
 |    :---:     |     :---:     |     :---:       |     :---:      |
