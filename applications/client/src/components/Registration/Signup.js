@@ -23,7 +23,7 @@ import { baseUrl } from "../../api";
 const Signup = () => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [email, setSemail] = React.useState("");
+  const [email, setEmail] = React.useState("");
   const [passwordShown, setPasswordShown] = React.useState(false); // dont show password at first
   const [passwordReqShow, setPasswordReqShow] = React.useState(false);
   const classes = useStyles();
@@ -44,13 +44,18 @@ const Signup = () => {
   };
 
   const handleSubmit = (e) => {
-    console.log(username);
-    console.log(password);
+    console.log("username:" + username);
+    console.log("password:" + password);
     const data = {
       username: username,
       email: email,
       password: password,
     };
+
+    // clear fields after submitting
+    setUsername('');
+    setPassword('');
+    setEmail('');
 
 
     errors = validate(data);
@@ -78,6 +83,7 @@ const Signup = () => {
       axios(config)
         .then((response) => {
           console.log(JSON.stringify(response.data));
+          // window.location.href = `${baseUrl}/user/create/`;
         })
         .catch((error) => {
           console.log(error);
@@ -126,7 +132,7 @@ const Signup = () => {
               name="email"
               placeholder="* Enter your email"
               value={email}
-              onChange={(e) => setSemail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
