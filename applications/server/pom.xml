@@ -53,7 +53,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>Spark</mainClass>
+                            <mainClass>SparkServer</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
