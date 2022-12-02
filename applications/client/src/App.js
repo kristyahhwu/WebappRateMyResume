@@ -14,6 +14,12 @@ import Login from './Pages/Login';
 import Navbar from './components/Navbar/Navbar';
 import Signup from './components/Registration/Signup';
 
+/**
+ * Keeps all page navigation within the session,
+ * define routes for components and elements
+ * @returns a container for all other components
+ */
+
 const App = () => {
   const classes = useStyles();
   const dispatch = useDispatch();

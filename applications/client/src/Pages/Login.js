@@ -146,12 +146,6 @@ const Login = () => {
 
                 </form>
             </Paper>
-            {/* <Button variant="outlined" size="large" color="primary">
-                Login
-            </Button>
-            <Button variant="contained" size="large" color="primary">
-                Sign Up
-            </Button> */}
         </Container>
 
 
