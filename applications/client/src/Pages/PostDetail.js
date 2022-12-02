@@ -8,17 +8,49 @@ import Axios from 'axios';
 import './pages.css';
 
 const PostDetail = () => {
-  const { id: currentPostId } = useParams();
+    const { id: currentPostId } = useParams();
 
-  //	const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  const [post, setPost] = useState([]);
-  const [allComments, setAllComments] = useState([]);
-  const [comment, setComment] = useState("");
-  const [likes, setLikes] = useState(0);
-  //TODO: Fix hardcoded userid after login is implemented 
-  const currentUserId = '5d7c8cb9-b3e8-4b86-8b0b-704fac91d553';
-  const currentUsername = 'gator';
+    const [post, setPost] = useState([]);
+    const [allComments, setAllComments] = useState([]);
+    const [comment, setComment] = useState("");
+    const [likes, setLikes] = useState(0);
+    //TODO: Fix hardcoded userid after login is implemented 
+    const currentUserId='';
+    const currentUsername='gator';
+
+    useEffect(() => {
+        Axios.get(`${baseUrl}/post/view`, {
+            params: {
+              postid: currentPostId
+            }
+          })
+            .then(res => {
+              setPost(res.data)
+              console.log('URL: /post/view postid:', currentPostId)
+              console.log("response:", res.data)
+              getLikes()
+            }).catch(error => console.log(error));
+        Axios.get(`${baseUrl}/post/view/comments`, {
+            params: {
+              postid: currentPostId
+            }
+          })
+            .then(res => {
+              console.log('URL: /post/view/comments postid:', currentPostId)
+              console.log("response:", res.data)
+              setAllComments(res.data)
+            }).catch(error => console.log(error))
+      }, []);
+
+    
+    const likePost = () => {
+        Axios.put(`${baseUrl}/post/like`, {
+                postid: currentPostId,
+                userid: currentUserId,
+        })
+    }
 
   useEffect(() => {
     Axios.get(`${baseUrl}/post/view`, {
