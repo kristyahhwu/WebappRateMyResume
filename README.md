@@ -1,6 +1,6 @@
 # CSC648-Fall22-04-team04 Repository
 
-## Application URL: 34.94.190.11:3000
+## Application URL: http://34.94.190.11:3000
 
 
 ## Team member
