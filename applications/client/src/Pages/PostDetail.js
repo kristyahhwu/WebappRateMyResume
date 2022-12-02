@@ -17,7 +17,7 @@ const PostDetail = () => {
     const [comment, setComment] = useState("");
     const [likes, setLikes] = useState(0);
     //TODO: Fix hardcoded userid after login is implemented 
-    const currentUserId='5d7c8cb9-b3e8-4b86-8b0b-704fac91d553';
+    const currentUserId='';
     const currentUsername='gator';
 
     useEffect(() => {

@@ -80,7 +80,7 @@ public class RoutesHandler {
     });
 
     public spark.Route handleComment = ((request, response) -> {
-        System.out.printf("Receive comment: \n" + request.body());
+        System.out.printf("Receive comment: %s\n", request.body());
         String body = request.body();
         return comment(body);
     });
