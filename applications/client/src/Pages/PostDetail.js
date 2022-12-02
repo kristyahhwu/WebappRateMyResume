@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Typography, TextField, Button } from "@material-ui/core";
 import { fetchPosts, baseUrl } from "../api";
-//import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Axios from 'axios';
 
 import './pages.css';
@@ -51,38 +51,6 @@ const PostDetail = () => {
                 userid: currentUserId,
         })
     }
-
-  useEffect(() => {
-    Axios.get(`${baseUrl}/post/view`, {
-      params: {
-        postid: currentPostId
-      }
-    })
-      .then(res => {
-        setPost(res.data)
-        console.log('URL: /post/view postid:', currentPostId)
-        console.log("response:", res.data)
-        getLikes()
-      }).catch(error => console.log(error));
-    Axios.get(`${baseUrl}/post/view/comments`, {
-      params: {
-        postid: currentPostId
-      }
-    })
-      .then(res => {
-        console.log('URL: /post/view/comments postid:', currentPostId)
-        console.log("response:", res.data)
-        setAllComments(res.data)
-      }).catch(error => console.log(error))
-  }, []);
-
-
-  const likePost = () => {
-    Axios.put(`${baseUrl}/post/like`, {
-      postid: currentPostId,
-      userid: currentUserId,
-    })
-  }
 
   const getLikes = () => {
     Axios.get(`${baseUrl}/post/view/like`, {
