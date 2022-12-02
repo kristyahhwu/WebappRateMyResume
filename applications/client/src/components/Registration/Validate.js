@@ -4,7 +4,7 @@
  * @returns error message if any
  */
 
-const validate = (values) => {
+const Validate = (values) => {
     let errors = {
         username: [],
         email: [],
@@ -42,4 +42,4 @@ const validate = (values) => {
     return errors;
 
 }
-export default validate;
+export default Validate;
