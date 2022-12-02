@@ -1,5 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles';
 
+/**
+ * stylesheet for Form.js
+ */
 export default makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
@@ -8,6 +11,8 @@ export default makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
+    marginTop: "25px",
+    justifyContent: 'space-between',
   },
   form: {
     display: 'flex',

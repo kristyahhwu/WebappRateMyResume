@@ -3,10 +3,14 @@ import { AppBar, Typography, Button, Toolbar } from '@material-ui/core'
 import { Link } from 'react-router-dom';
 
 import logo from '../../images/logo.svg';
-import useStyles from './styles'
+import useStyles from './NavbarStyles'
 import Search from '../Search';
 
-
+/**
+ * A responsive Navagation bar component
+ * using MUI library
+ * @returns display app logo, search bar, login and register button
+ */
 const Navbar = () => {
 
     const classes = useStyles();

@@ -4,10 +4,18 @@ import { Paper, Container, Button, Grid, Typography, TextField, InputAdornment }
 import jwt_decode from 'jwt-decode';
 
 // The followings are all the imported images/icons
-import useStyles from "../Registration/SignUpStyles";
-import logo from '../../images/black-logo.png'
+import useStyles from "../components/Registration/SignUpStyles";
+import logo from "../images/black-logo.png"
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import LockIcon from '@mui/icons-material/Lock';
+
+/**
+ * Login form for user to login to account
+ * only registered user are able to login
+ * @param {string} username 
+ * @param {string} password
+ * @returns validate user
+ */
 
 const Login = () => {
     const [username, setUsername] = React.useState("");
@@ -133,7 +141,7 @@ const Login = () => {
                         }
                     </div> */}
                     <Grid container justifyContent='center'>
-                        Don't have an account? Register <a href="/user/create/"> <strong>  Here </strong></a>
+                        Do Not have an account? Register <a href="/user/create/"> <strong>  Here </strong></a>
                     </Grid>
 
                 </form>

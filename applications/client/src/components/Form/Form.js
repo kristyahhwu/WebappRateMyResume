@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
-import FileBase from 'react-file-base64';
 import { useDispatch } from 'react-redux';
 
-import useStyles from './styles';
+import useStyles from './FormStyles';
 import { createPost } from '../../actions/posts';
 
+
+/**
+ * Form component that allow users to create a post and display on the homepage
+ * Takes in inputs {string}: author, title, description, and resumeUrl 
+ * Store inputs in database
+ * @returns a post with title, thumbnail picture, created time and like button
+ */
+
 const Form = () => {
-    const [postData, setPostData] = useState({ author: '', title: '', description: '', tags: '', resumeUrl: '' });
+    const [postData, setPostData] = useState({ author: '', title: '', description: '', resumeUrl: '' });
     const classes = useStyles();
     const dispatch = useDispatch();
 
@@ -22,7 +29,7 @@ const Form = () => {
 
     return (
         <Paper className={classes.paper}>
-            <form autoComplete='off' noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
+            <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Typography variant="h6">Creating a Post</Typography>
                 <TextField name="author" variant="outlined" label="Author" fullWidth value={postData.author} onChange={(e) => setPostData({ ...postData, author: e.target.value })} />
                 <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />

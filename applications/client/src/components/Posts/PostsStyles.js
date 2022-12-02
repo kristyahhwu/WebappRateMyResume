@@ -1,9 +1,14 @@
 import { makeStyles } from '@material-ui/core/styles';
 
+/**
+ * stylesheet for Posts.js
+ */
+
 export default makeStyles((theme) => ({
   mainContainer: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
+    marginTop: "10px"
   },
   smMargin: {
     margin: theme.spacing(1),

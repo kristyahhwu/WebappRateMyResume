@@ -1,5 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
+/**
+ * stylesheet for Signup.js
+ */
+
 export default makeStyles((theme) => ({
     paper: {
         marginTop: theme.spacing(8),
