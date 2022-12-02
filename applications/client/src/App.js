@@ -10,7 +10,7 @@ import Posts from './components/Posts/Posts'
 import PostDetail from './Pages/PostDetail';
 import Form from './components/Form/Form'
 import useStyles from './styles';
-import Login from './components/login/Login';
+import Login from './Pages/Login';
 import Navbar from './components/Navbar/Navbar';
 import Signup from './components/Registration/Signup';
 
@@ -26,7 +26,6 @@ const App = () => {
     <>
       <Navbar></Navbar>
       <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
         <Route path="/" element={<Home />} />
         <Route path="/search" exact element={<Search />} />
         <Route path="/user/login" exact element={<Login />} />
