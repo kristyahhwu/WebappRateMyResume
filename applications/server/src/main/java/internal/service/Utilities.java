@@ -328,9 +328,7 @@ public class Utilities {
         HandleLikeDTO newLike = new HandleLikeDTO();
         try {
             newLike = gson.fromJson(body, HandleLikeDTO.class);
-            if (newLike.userid == "") {
-                newLike.userid = "0000";
-            }
+            newLike.userid = "0000"; // FIXME
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -426,9 +424,7 @@ public class Utilities {
             newComment = gson.fromJson(body, HandleCommentDTO.class);
 
             // Allow guests to comment
-            if (newComment.userid == "") {
-                newComment.userid = "0000";
-            }
+            newComment.userid = "0000"; //FIXME
 
             // Add short timestamp to the comment
             LocalDateTime UnformattedTime = LocalDateTime.now();
@@ -464,7 +460,7 @@ public class Utilities {
         }
 
         if(result == null){
-            System.out.printf("No user found with userid: %s", newComment.userid);
+            System.out.printf("No user found with userid: %s\n", newComment.userid);
             return "Invalid User ID";
         }
         // now that both values have been validated,
