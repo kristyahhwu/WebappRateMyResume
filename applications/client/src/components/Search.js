@@ -7,6 +7,7 @@ import SearchBar from "material-ui-search-bar";
 
 // TODO: search bar function only works with <form> now
 // https://www.youtube.com/watch?v=8tZtm-znc9A video on Redux Toolkit filter
+// https://dev.to/marianna13/create-a-search-bar-with-react-and-material-ui-4he
 
 /**
  * function to filter posts using keyword
