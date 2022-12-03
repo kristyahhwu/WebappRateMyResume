@@ -6,10 +6,11 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   mainContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    marginTop: "10px",
-    alignItems: "stretch",
+    borderRadius: 15,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: '10px',
   },
   smMargin: {
     margin: theme.spacing(1),
