@@ -32,8 +32,10 @@ export default makeStyles((theme) => ({
     backgroundColor: '#f5f5f5',
     borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
   },
-  avatar1: {
-    backgroundColor: 'green',
+  gridContainer: {
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column-reverse',
+    },
   },
   [theme.breakpoints.down('sm')]: {
     mainContainer: {

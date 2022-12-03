@@ -9,12 +9,15 @@ import { fetchPosts, baseUrl } from "../api";
 import { useDispatch } from 'react-redux';
 import Axios from 'axios';
 import './pages.css';
+import useStyles from "../Pages/styles.js"
+
 
 
 const PostDetail = () => {
   const { id: currentPostId } = useParams();
 
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   const [post, setPost] = useState([]);
   const [allComments, setAllComments] = useState([]);
@@ -99,8 +102,8 @@ const PostDetail = () => {
 
       <div className="commentSection">
         {/* <Typography variant="h6">Write a comment</Typography> */}
-        <h1>Comments</h1>
-        <Paper style={{ padding: "40px 20px" }}>
+        <Paper style={{ padding: "50px 20px" }}>
+          <Typography variant="h5" mb={2} >Comments</Typography>
           <Grid container wrap="nowrap" spacing={2}>
             <Grid item>
               <Avatar>
@@ -110,8 +113,8 @@ const PostDetail = () => {
             </Grid>
             <Grid justifyContent="left" item xs zeroMinWidth>
               <h4 style={{ margin: 0, textAlign: "left" }}>first last</h4>
-              <p style={{ textAlign: "left" }}>
-                sample uglyass comment
+              <p className="p" style={{ textAlign: "left" }}>
+                less uglycomaslidfjalsjfiasjfoiweuroiwueowrtoiejrgoisjuoifjsadoifasudfhaisuyrpiuwyehfipuawhspifuwahsdofment
               </p>
               <p style={{ textAlign: "left", color: "gray" }}>
                 posted 1 minute ago
