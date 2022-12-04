@@ -10,7 +10,7 @@ import Face4Icon from '@mui/icons-material/Face4';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import { textAlign } from "@mui/system";
-import { Typography, TextField, Button, Paper, Grid, Avatar, Box, InputAdornment, IconButton } from "@material-ui/core";
+import { Typography, TextField, Button, Paper, Grid, Avatar, Box, InputAdornment, IconButton, Card, CardHeader, CardContent } from "@material-ui/core";
 
 import './pages.css';
 import useStyles from "../Pages/styles.js"
@@ -172,27 +172,20 @@ const PostDetail = () => {
           <Grid className={classes.paper}>
             {allComments.map((allComments, idx) => (
               <Typography gutterBottom key={idx}>
-                <Grid item container wrap="wrap" spacing={1}>
-
-                  <Avatar>
-                    <Face4Icon />
-                  </Avatar >
-                  <Typography>
-                    <strong>
-                      {allComments.username}
-                    </strong>
-                  </Typography>
-
-                  {allComments.time}
-
-
-                  <br />
-
-                  {allComments.comment}
-                  < br />
-
-                  <br />
-                </Grid>
+                  <Card sx={{ width: 1 }}>                
+                    <CardHeader
+                      avatar = {
+                        <Avatar>
+                          <Face4Icon />
+                        </Avatar >
+                      }
+                      title={allComments.username}
+                      subheader={allComments.time} 
+                    />
+                    <CardContent>
+                      <Typography paragraph> {allComments.comment} </Typography> <br />
+                    </CardContent>
+                  </Card>                
               </Typography>
             ))}
           </Grid>
