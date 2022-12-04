@@ -20,7 +20,7 @@ const Post = ({ post }) => {
 
   console.log(post)
   if (post.length === 0) {
-    return <h1>No posts!</h1>
+    return <></>
   }
 
   // to display actual resume picture, do <CardMedia className={classes.media} image={post.resumeUrl}
@@ -44,7 +44,8 @@ const Post = ({ post }) => {
 
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {post.description}</Typography>
+          {post.description}
+          </Typography>
       </CardContent>
 
       <CardActions className={classes.cardActions}>

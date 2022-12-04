@@ -33,7 +33,7 @@ const Form = () => {
                 <Typography variant="h6" ><strong>Creating a Post</strong></Typography>
                 <TextField name="author" variant="outlined" label="Author" fullWidth value={postData.author} onChange={(e) => setPostData({ ...postData, author: e.target.value })} />
                 <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
-                <TextField name="description" variant="outlined" label="Description(min 30 words)" fullWidth value={postData.description} onChange={(e) => setPostData({ ...postData, description: e.target.value })} />
+                <TextField name="description" variant="outlined" label="Description(max 30 words)" fullWidth value={postData.description} onChange={(e) => setPostData({ ...postData, description: e.target.value })} />
                 <TextField name="resumeUrl" variant="outlined" label="Resume Url (jpg/png format)" fullWidth value={postData.resumeUrl} onChange={(e) => setPostData({ ...postData, resumeUrl: e.target.value })} />
                 <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
                 <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
