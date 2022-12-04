@@ -16,10 +16,12 @@ export default makeStyles((theme) => ({
     marginLeft: '15px',
   },
   button: {
-    width: '200px',
+    width: '40%',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    color: "#ffffff",
+    backgroundColor: "#38C6BD",
   },
   Search: {
     display: 'flex',
@@ -32,9 +34,30 @@ export default makeStyles((theme) => ({
     backgroundColor: '#f5f5f5',
     borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
   },
+  gridContainer: {
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column-reverse',
+    },
+  },
   [theme.breakpoints.down('sm')]: {
     mainContainer: {
       flexDirection: "column-reverse"
     }
+  },
+  title: {
+    textAlign: "center",
+  },
+  paper: {
+    padding: "10px",
+    borderRadius: '20px',
+    margin: '10px auto'
+  },
+  leftSide: {
+    padding: '15px',
+    borderRadius: '20px',
+    width:"80%",
+    margin: '20px auto',
+    display: 'flex',
+    marginLeft: '10px'
   }
 }));

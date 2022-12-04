@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { Paper, Container, Button, Grid, Typography, TextField, InputAdornment } from "@material-ui/core";
 import jwt_decode from 'jwt-decode';
+import { useNavigate } from "react-router-dom";
 
 // The followings are all the imported images/icons
 import useStyles from "../components/Registration/SignUpStyles";
@@ -22,6 +23,7 @@ const Login = () => {
     const [password, setPassword] = React.useState("");
     const [user, setUser] = React.useState({}); // TODO: use redux toolkit to manage instead of state
     const classes = useStyles();
+    const navigate = useNavigate();
 
     // google login auth logic
     function handleCallbackResponse(response) {
@@ -70,6 +72,8 @@ const Login = () => {
             .catch((error) => {
                 console.log("error: " + error);
             });
+
+        navigate("/");
     };
 
 
@@ -146,12 +150,6 @@ const Login = () => {
 
                 </form>
             </Paper>
-            {/* <Button variant="outlined" size="large" color="primary">
-                Login
-            </Button>
-            <Button variant="contained" size="large" color="primary">
-                Sign Up
-            </Button> */}
         </Container>
 
 

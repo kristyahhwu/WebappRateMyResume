@@ -517,17 +517,17 @@ public class Utilities {
      * @param postId id of the Post
      * @return String number of likes in a formatted String
      */
-    public static String numberOfLikes(String postId) {
+    public static int numberOfLikes(String postId) {
         List<Document> likeResult = null;
         try {
 
             likeResult = postLikesCollection.find(eq("postid", postId)).into(new ArrayList<>());
-            return "Number of likes: " + likeResult.size();
+            return likeResult.size();
 
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        return "Number of likes: " + (likeResult == null ? 0 : likeResult.size());
+        return likeResult == null ? 0 : likeResult.size();
     }
 
     /**

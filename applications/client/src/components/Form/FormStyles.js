@@ -12,7 +12,6 @@ export default makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     marginTop: "25px",
-    justifyContent: 'space-between',
   },
   form: {
     display: 'flex',
@@ -25,5 +24,7 @@ export default makeStyles((theme) => ({
   },
   buttonSubmit: {
     marginBottom: 10,
+    color: "#ffffff",
+    backgroundColor: "#38C6BD",
   },
 }));

@@ -1,6 +1,7 @@
 import React from "react";
 import { Paper, Container, Button, Grid, Typography, TextField, InputAdornment, Box } from "@material-ui/core";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // The followings are all the imported images/icons
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -23,10 +24,11 @@ import { baseUrl } from "../../api";
 const Signup = () => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [email, setSemail] = React.useState("");
+  const [email, setEmail] = React.useState("");
   const [passwordShown, setPasswordShown] = React.useState(false); // dont show password at first
   const [passwordReqShow, setPasswordReqShow] = React.useState(false);
   const classes = useStyles();
+  const navigate = useNavigate();
 
   let errors = {
 
@@ -44,14 +46,18 @@ const Signup = () => {
   };
 
   const handleSubmit = (e) => {
-    console.log(username);
-    console.log(password);
+    console.log("username:" + username);
+    console.log("password:" + password);
     const data = {
       username: username,
       email: email,
       password: password,
     };
 
+    // clear fields after submitting
+    setUsername('');
+    setPassword('');
+    setEmail('');
 
     errors = validate(data);
     console.log("errors: ", errors);
@@ -78,12 +84,15 @@ const Signup = () => {
       axios(config)
         .then((response) => {
           console.log(JSON.stringify(response.data));
+          // window.location.href = `${baseUrl}/user/create/`;
         })
         .catch((error) => {
           console.log(error);
           alert("This email has been registered");
         });
     }
+
+    navigate("/");
   };
 
   return (
@@ -126,7 +135,7 @@ const Signup = () => {
               name="email"
               placeholder="* Enter your email"
               value={email}
-              onChange={(e) => setSemail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
