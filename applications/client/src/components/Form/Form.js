@@ -25,6 +25,7 @@ const Form = () => {
     }
 
     const clear = () => {
+        setPostData('');
     };
 
     return (

@@ -92,17 +92,16 @@ const PostDetail = () => {
   return (
     <div className="postDetailsRootDiv">
       <Paper className={classes.leftSide}
-        style={{
-
-        }}
         elevation={6}>
         <div className="postDetailsLeft">
+        {/* <div> */}
           <strong>
             {post.title}
           </strong>
+          <div> {post.description} 
           <div> {likes} </div>
           <button onClick={likePost}> Like </button>
-          <div> {post.description} </div>
+          </div>
           <img className="resume" src={post.resumeUrl} alt={post.title} />
         </div>
       </Paper>

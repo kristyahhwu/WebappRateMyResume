@@ -55,8 +55,9 @@ export default makeStyles((theme) => ({
   leftSide: {
     padding: '15px',
     borderRadius: '20px',
-    maxWidth: '800px',
+    width:"80%",
     margin: '20px auto',
-    justifyContent: 'center',
+    display: 'flex',
+    marginLeft: '10px'
   }
 }));
