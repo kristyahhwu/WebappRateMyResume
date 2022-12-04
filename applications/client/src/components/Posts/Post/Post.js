@@ -12,11 +12,14 @@ import human from '../../../images/human.jpg'
 import loop from '../../../images/loop.png'
 import rust from '../../../images/rust.png'
 import screamcat from '../../../images/screamcat.jpg'
+import tag from '../../../images/tag.png'
 
 const Post = ({ post }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const photos = [human, loop, rust, screamcat];
+  const photos = [human, loop, rust, screamcat, tag];
+  const randomIndex = Math.floor(Math.random() * photos.length);
+  const selectedPicture = photos[randomIndex];
 
   console.log(post)
   if (post.length === 0) {
@@ -26,7 +29,7 @@ const Post = ({ post }) => {
   // to display actual resume picture, do <CardMedia className={classes.media} image={post.resumeUrl}
   return (
     <Card className={classes.card} raised elevation={6}>
-      <CardMedia className={classes.media} image={screamcat} title={post.title} />
+      <CardMedia className={classes.media} image={selectedPicture} title={post.title} />
       <div className={classes.overlay}>
         <Typography variant="h6">{post.creator}</Typography>
         <Typography variant="body2">{moment(post.postDate).fromNow()}</Typography>
@@ -45,7 +48,7 @@ const Post = ({ post }) => {
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {post.description}
-          </Typography>
+        </Typography>
       </CardContent>
 
       <CardActions className={classes.cardActions}>
