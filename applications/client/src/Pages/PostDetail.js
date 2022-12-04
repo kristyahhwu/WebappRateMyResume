@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-// All MUI materials import
-import Face2Icon from '@mui/icons-material/Face2';
-import Face4Icon from '@mui/icons-material/Face4';
-import { Typography, TextField, Button, Paper, Grid, Avatar, Box, InputAdornment, IconButton } from "@material-ui/core";
 import { fetchPosts, baseUrl } from "../api";
 import { useDispatch } from 'react-redux';
 import Axios from 'axios';
+
+// All MUI materials import
+import Face2Icon from '@mui/icons-material/Face2';
+import Face4Icon from '@mui/icons-material/Face4';
+import InsertCommentIcon from '@mui/icons-material/InsertComment';
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import { textAlign } from "@mui/system";
+import { Typography, TextField, Button, Paper, Grid, Avatar, Box, InputAdornment, IconButton } from "@material-ui/core";
+
 import './pages.css';
 import useStyles from "../Pages/styles.js"
-import InsertCommentIcon from '@mui/icons-material/InsertComment';
-import { textAlign } from "@mui/system";
 
 const PostDetail = () => {
   const { id: currentPostId } = useParams();
@@ -94,13 +97,13 @@ const PostDetail = () => {
       <Paper className={classes.leftSide}
         elevation={6}>
         <div className="postDetailsLeft">
-        {/* <div> */}
-          <strong>
-            {post.title}
-          </strong>
-          <div> {post.description} 
-          <div> {likes} </div>
-          <button onClick={likePost}> Like </button>
+          <div className="postTitle"> {post.title} </div>
+          <div className="postDescription"> {post.description} </div>
+          <div>
+          <Button size="small" color="primary" onClick={likePost}>
+              <ThumbUpAltIcon fontSize="small" />
+              &nbsp; {likes} &nbsp;              
+            </Button>
           </div>
           <img className="resume" src={post.resumeUrl} alt={post.title} />
         </div>

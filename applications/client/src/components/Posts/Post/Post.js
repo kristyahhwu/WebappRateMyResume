@@ -13,6 +13,7 @@ import loop from '../../../images/loop.png'
 import rust from '../../../images/rust.png'
 import tag from '../../../images/tag.png'
 import datappl from '../../../images/datappl.png'
+import { getLikes } from '../../../Pages/PostDetail';
 
 const Post = ({ post }) => {
   const classes = useStyles();
@@ -41,7 +42,7 @@ const Post = ({ post }) => {
       </div>
 
       <Typography className={classes.title} variant="h5" gutterBottom>
-        <Link to={`/post/${post.postId}`}>{post.title}</Link>
+        <Link className="postLink" to={`/post/${post.postId}`}>{post.title}</Link>
         {/* {post.title} */}
       </Typography>
 

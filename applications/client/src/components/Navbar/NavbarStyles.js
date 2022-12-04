@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
+import { hover } from '@testing-library/user-event/dist/hover';
 
 /**
  * stylesheet for Navbar.js
@@ -9,8 +10,9 @@ export default makeStyles((theme) => ({
     appBar: {
         borderRadius: 15,
         marginTop: '2vw',
-        marginLeft: '2vw',
-        width: '95vw',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        width: '80vw',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
