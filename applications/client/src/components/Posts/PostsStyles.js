@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
   mainContainer: {
     borderRadius: 15,
+    width: '81vw',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
