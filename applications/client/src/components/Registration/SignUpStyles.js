@@ -39,4 +39,7 @@ export default makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
     },
+    image: {
+        alignItems: 'center',
+    }
 }));

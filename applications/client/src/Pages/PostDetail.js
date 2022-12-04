@@ -3,15 +3,14 @@ import { useParams } from "react-router";
 // All MUI materials import
 import Face2Icon from '@mui/icons-material/Face2';
 import Face4Icon from '@mui/icons-material/Face4';
-import { green, pink } from "@mui/material/colors";
-import { Typography, TextField, Button, Paper, Grid, Avatar, Divider } from "@material-ui/core";
+import { Typography, TextField, Button, Paper, Grid, Avatar, Box, InputAdornment, IconButton } from "@material-ui/core";
 import { fetchPosts, baseUrl } from "../api";
 import { useDispatch } from 'react-redux';
 import Axios from 'axios';
 import './pages.css';
 import useStyles from "../Pages/styles.js"
-
-
+import InsertCommentIcon from '@mui/icons-material/InsertComment';
+import { textAlign } from "@mui/system";
 
 const PostDetail = () => {
   const { id: currentPostId } = useParams();
@@ -92,19 +91,47 @@ const PostDetail = () => {
 
   return (
     <div className="postDetailsRootDiv">
-      <div className="postDetailsLeft">
-        <div> {post.title} </div>
-        <div> {likes} </div>
-        <button onClick={likePost}> Like </button>
-        <div> {post.description} </div>
-        <img className="resume" src={post.resumeUrl} alt={post.title} />
-      </div>
+      <Paper className={classes.leftSide}
+        style={{
+
+        }}
+        elevation={6}>
+        <div className="postDetailsLeft">
+          <strong>
+            {post.title}
+          </strong>
+          <div> {likes} </div>
+          <button onClick={likePost}> Like </button>
+          <div> {post.description} </div>
+          <img className="resume" src={post.resumeUrl} alt={post.title} />
+        </div>
+      </Paper>
+
 
       <div className="commentSection">
-        {/* <Typography variant="h6">Write a comment</Typography> */}
-        <Paper style={{ padding: "50px 20px" }}>
-          <Typography variant="h5" mb={2} >Comments</Typography>
-          <Grid container wrap="nowrap" spacing={2}>
+        <Paper className={classes.paper} elevation={6}>
+          <Grid className={classes.paper}>
+            <Typography variant="h5" mb={2} >
+              <strong>Comments</strong>
+            </Typography>
+
+            <TextField fullWidth minRows={1}
+              variant="outlined"
+              multiline value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton edge="end" color="primary">
+                      <InsertCommentIcon />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}>
+            </TextField>
+            <Button className={classes.button} variant="contained" fullWidth disabled={!comment} onClick={handleComment}>comment</Button>
+            {/* <Typography variant="h6">Write a comment</Typography> */}
+            {/* <Grid container wrap="nowrap" spacing={2}>
             <Grid item>
               <Avatar>
                 <Face2Icon color="error" />
@@ -137,21 +164,40 @@ const PostDetail = () => {
                 posted 1 minute ago
               </p>
             </Grid>
+          </Grid> */}
+          </Grid>
+
+          <Grid className={classes.paper}>
+            {allComments.map((allComments, idx) => (
+              <Typography gutterBottom key={idx}>
+                <Grid item container wrap="wrap" spacing={1}>
+
+                  <Avatar>
+                    <Face4Icon />
+                  </Avatar >
+                  <Typography>
+                    <strong>
+                      {allComments.username}
+                    </strong>
+                  </Typography>
+
+                  {allComments.time}
+
+
+                  <br />
+
+                  {allComments.comment}
+                  < br />
+
+                  <br />
+                </Grid>
+              </Typography>
+            ))}
           </Grid>
         </Paper>
-        <TextField label="comment" value={comment} onChange={(e) => setComment(e.target.value)}></TextField>
-        <Button disabled={!comment} onClick={handleComment}>comment</Button>
+      </div >
 
-
-        {allComments.map((allComments, idx) => (
-          <Typography key={idx}>
-            {allComments.username} <br />
-            {allComments.time} <br />
-            {allComments.comment} <br />
-            <br />
-          </Typography>))}
-      </div>
-    </div>
+    </div >
   );
 }
 

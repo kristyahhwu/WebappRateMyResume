@@ -16,10 +16,12 @@ export default makeStyles((theme) => ({
     marginLeft: '15px',
   },
   button: {
-    width: '200px',
+    width: '40%',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    color: "#ffffff",
+    backgroundColor: "#38C6BD",
   },
   Search: {
     display: 'flex',
@@ -41,5 +43,20 @@ export default makeStyles((theme) => ({
     mainContainer: {
       flexDirection: "column-reverse"
     }
+  },
+  title: {
+    textAlign: "center",
+  },
+  paper: {
+    padding: "10px",
+    borderRadius: '20px',
+    margin: '10px auto'
+  },
+  leftSide: {
+    padding: '15px',
+    borderRadius: '20px',
+    maxWidth: '800px',
+    margin: '20px auto',
+    justifyContent: 'center',
   }
 }));

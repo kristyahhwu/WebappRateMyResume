@@ -1,6 +1,7 @@
 import React from "react";
 import { Paper, Container, Button, Grid, Typography, TextField, InputAdornment, Box } from "@material-ui/core";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // The followings are all the imported images/icons
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
@@ -27,6 +28,7 @@ const Signup = () => {
   const [passwordShown, setPasswordShown] = React.useState(false); // dont show password at first
   const [passwordReqShow, setPasswordReqShow] = React.useState(false);
   const classes = useStyles();
+  const navigate = useNavigate();
 
   let errors = {
 
@@ -56,7 +58,6 @@ const Signup = () => {
     setUsername('');
     setPassword('');
     setEmail('');
-
 
     errors = validate(data);
     console.log("errors: ", errors);
@@ -90,6 +91,8 @@ const Signup = () => {
           alert("This email has been registered");
         });
     }
+
+    navigate("/");
   };
 
   return (

@@ -13,6 +13,7 @@ import useStyles from './styles';
 import Login from './Pages/Login';
 import Navbar from './components/Navbar/Navbar';
 import Signup from './components/Registration/Signup';
+import CreatePost from './components/Form/CreatePost';
 
 /**
  * Keeps all page navigation within the session,
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/user/login" exact element={<Login />} />
         <Route path="/user/create/" exact element={<Signup />} />
         <Route path="/post/:id" element={<PostDetail />} />
+        <Route path="/post/create" element={<CreatePost />} />
       </Routes>
     </>
   );

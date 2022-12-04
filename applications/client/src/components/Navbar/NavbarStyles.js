@@ -15,7 +15,7 @@ export default makeStyles((theme) => ({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '0px 50px',
+        padding: '0px 10px',
         [theme.breakpoints.down('sm')]: {
             flexDirection: 'column',
         },

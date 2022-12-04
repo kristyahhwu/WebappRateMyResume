@@ -23,6 +23,7 @@ const Navbar = () => {
                 <Search fullWidth className={classes.Search} size="large"></Search>
                 <Button className={classes.submitButton} variant="contained" component={Link} to="/user/login">Login</Button>
                 <Button className={classes.submitButton} variant="contained" component={Link} to="/user/create">Register</Button>
+                <Button className={classes.submitButton} variant="contained" component={Link} to="/post/create">Post</Button>
             </Toolbar>
         </AppBar>
 

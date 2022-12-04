@@ -21,13 +21,13 @@ const Home = () => {
         <Container maxWidth="xl">
           <Grid container style={{ justifyContent: "center" }} alignItems="stretch" spacing={3} className={classes.gridContainer} >
             <Grid
-              item xs={12} sm={10} md={10} lg={9} >
+              item xs={12} sm={10} md={10} lg={12} >
               <Posts />
             </Grid>
 
-            <Grid item xs={8} sm={5} md={3} lg={3} fullWidth justifyContent="flex-end" className="createPost-form">
+            {/* <Grid item xs={8} sm={5} md={3} lg={3} fullWidth justifyContent="flex-end" className="createPost-form">
               <Form />
-            </Grid>
+            </Grid> */}
           </Grid>
         </Container>
       </Grow>

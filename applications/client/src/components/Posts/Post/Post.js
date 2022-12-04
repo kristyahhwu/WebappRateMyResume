@@ -11,13 +11,13 @@ import { likePost } from '../../../actions/posts';
 import human from '../../../images/human.jpg'
 import loop from '../../../images/loop.png'
 import rust from '../../../images/rust.png'
-import screamcat from '../../../images/screamcat.jpg'
 import tag from '../../../images/tag.png'
+import datappl from '../../../images/datappl.png'
 
 const Post = ({ post }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const photos = [human, loop, rust, screamcat, tag];
+  const photos = [human, loop, rust, tag, datappl];
   const randomIndex = Math.floor(Math.random() * photos.length);
   const selectedPicture = photos[randomIndex];
 
