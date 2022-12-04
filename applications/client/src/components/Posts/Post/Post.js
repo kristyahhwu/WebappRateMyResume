@@ -20,7 +20,7 @@ const Post = ({ post }) => {
 
   console.log(post)
   if (post.length === 0) {
-    return <></>
+    return <h1>No posts!</h1>
   }
 
   // to display actual resume picture, do <CardMedia className={classes.media} image={post.resumeUrl}
@@ -32,22 +32,23 @@ const Post = ({ post }) => {
         <Typography variant="body2">{moment(post.postDate).fromNow()}</Typography>
       </div>
       <div className={classes.overlay2}>
-        <Button color="white" size="small" onClick={() => { }}>
+        <Button size="small" onClick={() => { }}>
           <MoreHorizIcon fontSize="medium" />
         </Button>
       </div>
 
-      <Typography className={classes.title} variant="h5" component="h2">
+      <Typography className={classes.title} variant="h5" gutterBottom>
         <Link to={`/post/${post.postId}`}>{post.title}</Link>
+        {/* {post.title} */}
       </Typography>
 
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          {post.description.split(' ').splice(0, 20).join(' ')}...</Typography>
+          {post.description}</Typography>
       </CardContent>
 
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" >
+        <Button size="small" color="primary" onClick={() => dispatch(likePost(post._id))}>
           <ThumbUpAltIcon fontSize="small" />
           &nbsp; Like &nbsp;
           {post.likeCount}
