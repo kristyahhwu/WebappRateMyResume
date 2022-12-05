@@ -1,6 +1,6 @@
 # CSC648-Fall22-04-team04 Repository
 
-## Application URL: http://34.94.190.11:3000
+## Application URL: http://ratemyresume.ninja
 
 
 ## Team member
@@ -9,7 +9,7 @@
 |    :---:     |     :---:     |     :---:       |     :---:       |
 | Leiyi Gao    | lgao4@mail.sfsu.edu             |   gaolarry1987             |  Team Leader |
 | Justin Mao   | jmao@mail.sfsu.edu             |   jmao12                   |  Backend Leader |
-| Yinyin Wu    | ywu21@mail.sfsu.edu            |   kristyahhwu              |  Scrum Master, Frontend Lead |
+| Yinyin Wu    | ywu21@mail.sfsu.edu            |   kristyahhwu              |  Frontend Lead |
 | Michael Han    | mhan2@mail.sfsu.edu           |   michaelhan38              |  Git Master |
 | Nicholas Hamada | nhamada@sfsu.edu       |  nhamada2                   | Team member |
 
@@ -22,7 +22,7 @@
 
 ### Pulling and running frontend image
 - docker pull gcr.io/project-648-1/ratemyresume
-- docker run -p 3000:3000 -d gcr.io/project-648-1/ratemyresume
+- docker run -p 80:3000 -d gcr.io/project-648-1/ratemyresume
 
 ### Running backend
 - pull the latest app version from github
