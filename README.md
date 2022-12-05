@@ -3,7 +3,7 @@
 ## Application URL: http://ratemyresume.ninja
 
 
-## Team member
+## Team members
 
 | Student Name | Student Email | GitHub Username | Student's Role |
 |    :---:     |     :---:     |     :---:       |     :---:       |
@@ -13,9 +13,7 @@
 | Michael Han    | mhan2@mail.sfsu.edu           |   michaelhan38              |  Git Master |
 | Nicholas Hamada | nhamada@sfsu.edu       |  nhamada2                   | Team member |
 
-## NO code needs to be stored in the root of your repository. You may rename the application folder if you like to your team's application name. But all source code related to your team's application should be stored inside the application folder.
-
-## Running app in the GCE
+## Running app in the GCP
 ### Initial setup for VM instances in Google Cloud Platform  
 - Install docker: `sudo apt-get install docker.io`
 - Configure docker auth: `gcloud auth configure-docker`
