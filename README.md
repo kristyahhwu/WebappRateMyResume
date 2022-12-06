@@ -3,13 +3,13 @@
 ## Application URL: http://ratemyresume.ninja
 
 
-## Team member
+## Team members
 
 | Student Name | Student Email | GitHub Username | Student's Role |
 |    :---:     |     :---:     |     :---:       |     :---:       |
 | Leiyi Gao    | lgao4@mail.sfsu.edu             |   gaolarry1987             |  Team Leader |
 | Justin Mao   | jmao@mail.sfsu.edu             |   jmao12                   |  Backend Leader |
-| Yinyin Wu    | ywu21@mail.sfsu.edu            |   kristyahhwu              |  Scrum Master, Frontend Lead |
+| Yinyin Wu    | ywu21@mail.sfsu.edu            |   kristyahhwu              |  Frontend Lead |
 | Michael Han    | mhan2@mail.sfsu.edu           |   michaelhan38              |  Git Master |
 | Nicholas Hamada | nhamada@sfsu.edu       |  nhamada2                   | Team member |
 
