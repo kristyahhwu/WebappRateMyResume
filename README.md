@@ -1,6 +1,6 @@
 # CSC648-Fall22-04-team04 Repository
 
-## Application URL: http://34.94.190.11:3000
+## Application URL: http://ratemyresume.ninja
 
 
 ## Team member
@@ -13,22 +13,25 @@
 | Michael Han    | mhan2@mail.sfsu.edu           |   michaelhan38              |  Git Master |
 | Nicholas Hamada | nhamada@sfsu.edu       |  nhamada2                   | Team member |
 
-## NO code needs to be stored in the root of your repository. You may rename the application folder if you like to your team's application name. But all source code related to your team's application should be stored inside the application folder.
-
-## Running app in the GCE
+## Running app in GCP
 ### Initial setup for VM instances in Google Cloud Platform  
 - Install docker: `sudo apt-get install docker.io`
 - Configure docker auth: `gcloud auth configure-docker`
 
 ### Pulling and running frontend image
-- docker pull gcr.io/project-648-1/ratemyresume
-- docker run -p 3000:3000 -d gcr.io/project-648-1/ratemyresume
+```
+docker pull gcr.io/project-648-1/ratemyresume
+docker run -p 80:3000 -d gcr.io/project-648-1/ratemyresume
+```
 
-### Running backend
+### Build and run backend
 - pull the latest app version from github
 - cd to `application/server` directory
 - run the following commands:
   ```
+  rm pom.xml
+  mv gcp-pom.xml pom.xml
+  rm -r target/
   mvn package
   java -jar target/Team4-1.0-SNAPSHOT.jar &
   ```  
@@ -43,19 +46,29 @@ NOTE: You need might to create an account in [docker hub](https://hub.docker.com
 You can interact with the database using mongoExpress by entering this address in your browser URL:  
 `localhost:8081`
 
-### Run backend
+### Running backend server
 - cd to `application/server` directory
 - run the following commands:
   ```
+  rm -r target/
   mvn package
   java -jar target/Team4-1.0-SNAPSHOT.jar &
   ```  
 
-### Run frontend
+### Running frontend app
 - cd to `application/client` directory
 - run
   ```
   npm config set legacy-peer-deps true
   npm i
   npm start
+  ```
+
+## Build and push Docker image for frontend app
+- cd to `application/client` directory
+- run
+  ```
+  docker build . -t ratemyresume
+  docker tag ratemyresume gcr.io/project-648-1/ratemyresume
+  docker push gcr.io/project-648-1/ratemyresume
   ```
