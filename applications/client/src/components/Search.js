@@ -5,6 +5,16 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import SearchBar from "material-ui-search-bar";
 
+// TODO: search bar function only works with <form> now
+// https://www.youtube.com/watch?v=8tZtm-znc9A video on Redux Toolkit filter
+// https://dev.to/marianna13/create-a-search-bar-with-react-and-material-ui-4he
+
+/**
+ * function to filter posts using keyword
+ * @param keyword anyword match in the description
+ * @returns a lists of posts with input keyword
+ */
+
 const Search = () => {
   const [postList, setPostList] = useState([]);
 
@@ -18,18 +28,18 @@ const Search = () => {
     //       firstName: 'Fred',
     //       lastName: 'Flintstone'
     //     }})
-      Axios.get(`http://localhost:4321/post/search`, {
+    Axios.get(`http://localhost:4321/post/search`, {
       // Axios.get(`http://34.94.186.97:4321/post/search`, {
-        params: {
-          keyword: inputKeyword
-        }
-      })
-        .then(res => {
-          setPostList(res.data)
-          console.log('URL: /post/search keyword:', inputKeyword)
-          console.log("response:", res)
-        }).catch(error => console.log(error))
-    }    
+      params: {
+        keyword: inputKeyword
+      }
+    })
+      .then(res => {
+        setPostList(res.data)
+        console.log('URL: /post/search keyword:', inputKeyword)
+        console.log("response:", res)
+      }).catch(error => console.log(error))
+  }
 
   console.log("rendering posts")
   return (

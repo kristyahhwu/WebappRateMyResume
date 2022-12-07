@@ -1,4 +1,10 @@
-const validate = (values) => {
+/**
+ * function to validate if user inputs are valid
+ * @param {string} values input value
+ * @returns error message if any
+ */
+
+const Validate = (values) => {
     let errors = {
         username: [],
         email: [],
@@ -36,4 +42,4 @@ const validate = (values) => {
     return errors;
 
 }
-export default validate;
+export default Validate;

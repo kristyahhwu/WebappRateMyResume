@@ -1,7 +1,14 @@
+:root {
+  justify-content: center;
+  display: flex;
+  flexDirection: 'row';
+}
 /* .App {
   text-align: center;
+  justify-content: space-between;
 }
 
+/*
 .App-logo {
   height: 40vmin;
   pointer-events: none;
